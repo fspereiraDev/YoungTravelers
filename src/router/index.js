@@ -1,10 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Login from "../views/Login.vue"
+import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
-import Home from "../views/Home.vue"
-import Profile from "../views/Profile.vue"
-import Locations from "../views/Locations.vue"
+import Home from "../views/Home.vue";
+import Profile from "../views/Profile.vue";
+import Locations from "../views/Locations.vue";
+import LocationInfo from "../views/LocationInfo.vue"
 
 Vue.use(VueRouter);
 
@@ -32,6 +33,11 @@ const routes = [{
     path: "/locations",
     name: "locations",
     component: Locations
+  },
+  {
+    path: "/locationInfo",
+    name: "locationInfo",
+    component: LocationInfo
   }
 ];
 

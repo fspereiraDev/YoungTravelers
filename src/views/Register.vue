@@ -6,19 +6,19 @@
         <img src="../assets/logo.png" id="icon" alt="User Icon" width="100px" height="200px" />
       </div>
 
-      <!-- Login Form -->
-      <form @submit.prevent="login">
+      <!-- Register Form -->
+      <form @submit.prevent="register">
         <input
           type="text"
-          id="login"
+          id="regName"
           class="fadeIn second"
-          name="login"
+          name="name"
           placeholder="Nome e sobrenome"
-          v-model="email"
+          v-model="name"
         />
         <input
           type="email"
-          id="login"
+          id="regEmail"
           class="fadeIn second"
           name="email"
           placeholder="Email"
@@ -26,22 +26,18 @@
         />
         <input
           type="text"
-          id="password"
+          id="regPassword"
           class="fadeIn third"
-          name="login"
+          name="password"
           placeholder="Password"
           v-model="password"
         />
-        <input type="submit" class="fadeIn fourth" value="Log In" @click="login" />
+        <input type="submit" class="fadeIn fourth" value="Sign Up" @submit="register" />
       </form>
 
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <router-link
-          to="/register"
-          class="underlineHover"
-          href="#"
-        >Don't have an account? Sign up here.</router-link>
+        <router-link to="/login" class="underlineHover">Already have an account? Log in here.</router-link>
       </div>
     </div>
   </div>
@@ -53,23 +49,37 @@ export default {
   data() {
     return {
       name: "",
+      // country: "",
+      // university: "",
+      // course: "",
       email: "",
-      password: "",
-      password2: "",
-      is_admin: null
+      password: ""
+      // password2: "",
+      // tags: ""
     };
   },
   methods: {
     register: function() {
-      let data = {
+      let user = {
         name: this.name,
+        // country: this.country,
+        // university: this.university,
+        // course: this.course,
         email: this.email,
-        password: this.password,
-        is_admin: this.is_admin
+        password: this.password
+        // password2: this.password2,
+        // is_admin: this.is_admin
       };
+      console.log(user);
       this.$store
-        .dispatch("register", data)
-        .then(() => this.router.push("/login"))
+        .dispatch("register", user)
+        .then(
+          () => this.$router.push("/login"),
+          localStorage.setItem(
+            "users",
+            JSON.stringify(this.$store.getters.getUsers)
+          )
+        )
         .catch(err => console.log(err));
     }
   }

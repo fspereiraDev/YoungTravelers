@@ -1,130 +1,95 @@
 <template>
   <div class="locations">
     <NavBar></NavBar>
-    <div class="container">
-      <h1 class="page-title">Points of Interest</h1>
-      <div class="row location-title">
-        <div class="col-lg-4">
-          <b-card
-            title="Card Title"
-            img-src="https://picsum.photos/1000/800/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            class="location-card lg-3"
-          >
-            <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-            <b-button href="#" variant="primary">View Details</b-button>
-          </b-card>
-        </div>
-        <div class="col-lg-4">
+    <b-container>
+      <h1 class="page-title">Spots of Interest</h1>
+      <b-row align-v="center">
         <b-card
-          title="Card Title"
-          img-src="https://picsum.photos/1000/800/?image=25"
+          v-for="(spot, index) in spots"
+          :key="index"
+          :title="spot.name"
+          :img-src="spot.image"
           img-alt="Image"
           img-top
           tag="article"
           class="location-card lg-3"
         >
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-          <b-button href="#" variant="primary">View Details</b-button>
+          <b-card-text>{{spot.description}}</b-card-text>
+          <b-button to="/locationInfo" variant="primary">View Details</b-button>
         </b-card>
-        </div>
-        <div class="col-lg-4">
-        <b-card
-          title="Card Title"
-          img-src="https://picsum.photos/1000/800/?image=25"
-          img-alt="Image"
-          img-top
-          tag="article"
-          class="location-card lg-3"
-        >
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-          <b-button href="#" variant="primary">View Details</b-button>
-        </b-card>
-        </div>
-
-        <div class="col-lg-4">
-        <b-card
-          title="Card Title"
-          img-src="https://picsum.photos/1000/800/?image=25"
-          img-alt="Image"
-          img-top
-          tag="article"
-          class="location-card lg-3"
-        >
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-          <b-button href="#" variant="primary">View Details</b-button>
-        </b-card>
-        </div>
-        <div class="col-lg-4">
-        <b-card
-          title="Card Title"
-          img-src="https://picsum.photos/1000/800/?image=25"
-          img-alt="Image"
-          img-top
-          tag="article"
-          class="location-card lg-3"
-        >
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-          <b-button href="#" variant="primary">View Details</b-button>
-        </b-card>
-        </div>
-        <div class="col-lg-4">
-        <b-card
-          title="Card Title"
-          img-src="https://picsum.photos/1000/800/?image=25"
-          img-alt="Image"
-          img-top
-          tag="article"
-          class="location-card lg-3"
-        >
-          <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-          <b-button href="#" variant="primary">View Details</b-button>
-        </b-card>
-        </div>
-      </div>
-    </div>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
 import NavBar from "../components/NavBar.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "Locations",
   components: {
     NavBar
-  }
+  },
+  data() {
+    return {
+      spots: {}
+    };
+  },
+  mounted() {
+    this.spots = this.getLocations;
+    console.log(this.spots);
+  },
+  methods: {
+    hasSpots() {}
+  },
+  computed: mapState({
+    getLocations: state => state.locations
+  })
 };
 </script>
 
 
-<style>
+<style scoped>
 .location-card {
-  max-width: 25rem;
+  position: relative;
+  max-width: 30rem;
+  height: 460px;
   min-height: 32rem;
+  margin-top: 30px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  height: 200px;
+}
+
+.card-text {
+  font-size: 12px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  /* position: relative; */
+  margin-top: auto;
+  margin-left: auto;
+  width: 30%;
 }
 
 .page-title {
   text-align: center;
+  font-size: 50px;
 }
-
-.location-title {
-
-    margin-top: 4rem;
-    
-}
-.col-lg-4 {
-
-    margin-top: 2rem;
-}
-
-
 </style>

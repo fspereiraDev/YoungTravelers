@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid fadeInDown">
-    <div id="formContent">
+  <div class="container-fluid">
+    <div class="form fadeInDown" id="formContent">
       <!-- Icon -->
-      <div class="fadeIn first">
+      <div class="icon">
         <img src="../assets/logo.png" id="icon" alt="User Icon" width="100px" height="200px" />
       </div>
 
@@ -10,21 +10,21 @@
       <form @submit.prevent="login">
         <input
           type="text"
-          id="login"
+          id="logEmail"
           class="fadeIn second"
-          name="login"
-          placeholder="Username"
-          v-model="email"
+          name="email"
+          placeholder="Email"
+          v-model="loginInput.email"
         />
         <input
           type="password"
-          id="password"
+          id="logPassword"
           class="fadeIn third"
-          name="login"
+          name="password"
           placeholder="Password"
-          v-model="password"
+          v-model="loginInput.password"
         />
-        <input type="submit" class="fadeIn fourth" value="Log In" @click="login" />
+        <input type="submit" class="fadeIn fourth" value="Log In" @submit="login" />
       </form>
 
       <!-- Remind Passowrd -->
@@ -35,33 +35,79 @@
   </div>
 </template>
 
+<script>
+import { mapGetters } from "vuex";
+export default {
+  name: "Login",
+  data() {
+    return {
+      loginInput: {
+        email: "",
+        password: ""
+      },
+      users: this.$store.state.users
+    };
+  },
+  created() {
+    // console.log(this.users);
+  },
+  methods: {
+    async login() {
+      let email = this.loginInput.email;
+      let password = this.loginInput.password;
+      //console.log("Email: " + email + " & password: " + password);
+      let loginConfirm = "";
+
+      for (let i = 0; i < this.users.length; i++) {
+        if (
+          email == this.users[i].email &&
+          password == this.users[i].password
+        ) {
+          await this.$store
+            .dispatch("login", { email, password })
+            .then(response => {
+              loginConfirm = response.data;
+              // this.$router.push("/home");
+            })
+            .catch(err => {
+              loginConfirm = err.response.data;
+              console.log(err.response.data);
+            });
+
+          if (loginConfirm != "Incorrect email or password.") {
+            await this.$swal({
+              title: "Welcome",
+              text: "Login In",
+              icon: "success",
+              timer: 1000
+            });
+            this.$router.push("/");
+          } else {
+            await this.$swal({
+              title: "ERROR",
+              text: "Check your email or password",
+              icon: "warning",
+              timer: 1000
+            });
+          }
+        }
+      }
+    }
+  },
+  computed: {
+    ...mapGetters(["getUsers"])
+  }
+};
+</script>
+
 <style scoped>
-body {
-  font-family: "Poppins", sans-serif;
-  overflow: hidden;
-
-  background-size: cover;
-}
-
 a {
   color: #92badd;
   display: inline-block;
   text-decoration: none;
   font-weight: 400;
 }
-
-h2 {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
-  display: inline-block;
-  margin: 40px 8px 10px 8px;
-  color: #cccccc;
-}
-
 /* STRUCTURE */
-
 .container-fluid {
   display: flex;
   align-items: center;
@@ -72,7 +118,7 @@ h2 {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  background-size: 100%; 
+  background-size: 100%;
 }
 
 #formContent {
@@ -90,27 +136,16 @@ h2 {
 }
 
 #formFooter {
-  background-color: rgb(126, 126, 126, 0.3);
-  border-top: 1px solid #dce8f1;
+  background-color: rgb(126, 126, 126, 0.2) !important;
+  /* border-top: 1px solid #f3f3f3; */
+  border: none;
   padding: 25px;
   text-align: center;
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
 }
 
-/* TABS */
-
-h2.inactive {
-  color: #cccccc;
-}
-
-h2.active {
-  color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
-}
-
 /* FORM TYPOGRAPHY*/
-
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
@@ -162,8 +197,8 @@ input[type="password"] {
   display: inline-block;
   font-size: 16px;
   margin: 5px;
-  width: 70%;
-  border: 1px solid #f6f6f6;
+  width: 100%;
+  /* border: 1px solid #f6f6f6; */
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -181,113 +216,6 @@ input[type="password"]:focus {
 
 input[type="text"]:placeholder {
   color: #cccccc;
-}
-
-/* ANIMATIONS */
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.fadeIn {
-  opacity: 0;
-  -webkit-animation: fadeIn ease-in 1;
-  -moz-animation: fadeIn ease-in 1;
-  animation: fadeIn ease-in 1;
-
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  animation-duration: 1s;
-}
-
-.fadeIn.first {
-  -webkit-animation-delay: 0.4s;
-  -moz-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.fadeIn.second {
-  -webkit-animation-delay: 0.6s;
-  -moz-animation-delay: 0.6s;
-  animation-delay: 0.6s;
-}
-
-.fadeIn.third {
-  -webkit-animation-delay: 0.8s;
-  -moz-animation-delay: 0.8s;
-  animation-delay: 0.8s;
-}
-
-.fadeIn.fourth {
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  animation-delay: 1s;
 }
 
 .underlineHover:after {
@@ -309,37 +237,7 @@ input[type="text"]:placeholder {
   width: 100%;
 }
 
-/* OTHERS */
-
-*:focus {
-  outline: none;
-}
-
 #icon {
-  width: 60%;
+  width: 50%;
 }
 </style>
-
-<script>
-// import { mapGetters } from "vuex";
-export default {
-  name: "Login",
-  data() {
-    return {
-      email: "",
-      password: ""
-    };
-  },
-  methods: {
-    login: function() {
-      let email = this.email;
-      let password = this.password;
-      console.log("Email: " + email + " & password: " + password);
-      this.$store
-        .dispatch("login", { email, password })
-        .then(() => this.$router.push("/home"))
-        .catch(err => console.log(err));
-    }
-  }
-};
-</script>

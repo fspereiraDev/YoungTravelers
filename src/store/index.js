@@ -24,7 +24,7 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        image: "https://live.staticflickr.com/4628/39267662975_36a9925e17_b.jpg",
+        image: "https://thumbs.web.sapo.io/?W=800&H=0&delay_optim=1&epic=MzRl8sjFub4fQffy8Qz2RzXsXNLlA+uzJcBOCCkrQUn8fYkrzpSga7rY/xtAthfpgEW0xV5Z7bs3LpwQbW8xXwp8/PfwzIu2ScbAPhmUs0XEsc0=",
         name: "Estádio do Dragão",
         lat: "",
         long: "",
@@ -36,7 +36,7 @@ export default new Vuex.Store({
       },
       {
         id: 3,
-        image: "https://live.staticflickr.com/4628/39267662975_36a9925e17_b.jpg",
+        image: "https://www.medis.pt/media/1998/coliseu-porto-agora-e-coliseu-porto-ageas.jpg?anchor=center&mode=crop&width=1440&height=895&rnd=131719894510000000",
         name: "Coliseu Porto Ageas",
         lat: "41.146992",
         long: "-8.6076057",
@@ -45,13 +45,39 @@ export default new Vuex.Store({
         rating: "",
         website: "https://www.coliseu.pt/",
         tag: "Eventos"
-      }
+      },
+      {
+        id: 3,
+        image: "https://www.medis.pt/media/1998/coliseu-porto-agora-e-coliseu-porto-ageas.jpg?anchor=center&mode=crop&width=1440&height=895&rnd=131719894510000000",
+        name: "Coliseu Porto Ageas",
+        lat: "41.146992",
+        long: "-8.6076057",
+        address: "R. de Passos Manuel 137, 4000-385 Porto",
+        description: "O Coliseu do Porto é uma sala de espectáculos localizada na cidade do Porto, em Portugal. O edifício foi classificado como Monumento de Interesse Público pela Portaria n.º 637/2012, de 2 de novembro de 2012, publicada em Diário da República.",
+        rating: "",
+        website: "https://www.coliseu.pt/",
+        tag: "Eventos"
+      },
+
+
+
+    ]
   },
 
   getters: {
     getIsLoggedIn: state => {
       return state.isLoggedIn
-    }
+    },
+    getUsers: state => {
+      return state.users
+    },
+    getLocations: state => {
+      return state.locations
+    },
+    getUserId: state => {
+      return state.users.id
+    },
+
   },
   mutations: {
     LOGIN(state) {
@@ -63,6 +89,30 @@ export default new Vuex.Store({
     },
     LOGOUT(state) {
       state.isLoggedIn = false;
+    },
+    REGISTER(state, payload) {
+      state.users.push(payload);
+    },
+    SET_USERS(state, payload) {
+      state.users = payload;
+    },
+    /* Function that prepares localStorage with an empty array that will be
+    populated once when the 1st register is done. So in this case we use it to store
+    the information about the admin */
+    PREPARE_LOCAL(state) {
+      let admin = {
+        name: "Fábio Carvalho",
+        country: "Portugal",
+        university: "Escola Superior de media Artes e Design",
+        course: "Tecnologias e Desenvolvimento Web",
+        email: "fabio@gmail.com",
+        password: "fabio123",
+        password2: "fabio123",
+        tags: "",
+        is_admin: null
+      }
+
+      state.users.push(admin);
     }
   },
   actions: {
@@ -73,18 +123,33 @@ export default new Vuex.Store({
       return new Promise(resolve => {
         // simulation off http request
         setTimeout(() => {
-          localStorage.setItem("token", "JWT");
+          localStorage.setItem("token", JSON.stringify(data));
           commit('LOGIN_SUCCESS');
           resolve(data);
         }, 1000);
       })
     },
+
     logout({
       commit
     }) {
       localStorage.removeItem("token");
       commit('LOGOUT');
+    },
+
+    register(context, data) {
+      context.commit('REGISTER', data);
+    },
+
+    setUsers(context, data) {
+      context.commit('SET_USERS', data)
+    },
+
+    prepareLocal(context) {
+      context.commit('PREPARE_LOCAL')
     }
+
+
   },
   modules: {}
 });

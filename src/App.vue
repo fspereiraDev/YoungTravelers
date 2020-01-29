@@ -1,29 +1,32 @@
 <template>
   <div id="app">
-    
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  created() {},
+  created() {
+    let users = localStorage.getItem("users");
+    if (!users) {
+      console.log("hey");
+
+      this.$store.dispatch("prepareLocal");
+    } else {
+      this.$store.dispatch("setUsers", JSON.parse(users));
+    }
+    console.log(users);
+  },
   computed: {
     isLoggedIn: function() {
       return this.$store.getters.getIsLoggedIn;
     }
   },
-  methods: {
-    logout: function() {
-      this.$store.dispatch("logout").then(() => {
-        this.$router.push("/login");
-      });
-    }
-  }
+  methods: {}
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: "Arial", serif;
   font-size: 10px;
@@ -42,19 +45,4 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-
-/*body.login {
-  overflow-y: hidden !important;
-  background-image: url("./assets/backg.jpg") !important;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-body.register {
-  background-image: url("./assets/login-backg2.jpg") !important;
-}*/
 </style>
