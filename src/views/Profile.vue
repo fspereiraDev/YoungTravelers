@@ -1,297 +1,138 @@
 <template>
   <div class="profile">
-    <NavBar />
-    <div class="container emp-profile">
-      <form method="post">
+    <NavBar></NavBar>
+    <div class="container">
+      <div class="col user-profile">
         <div class="row">
-          <div class="col-md-4">
-            <div class="profile-img">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                alt
-              />
-              <div class="file btn btn-lg btn-primary">
-                Change Photo
-                <input type="file" name="file" />
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="profile-head">
-              <h5>Kshiti Ghelani</h5>
-              <h6>Web Developer and Designer</h6>
-              <p class="proile-rating">
-                RANKINGS :
-                <span>8/10</span>
-              </p>
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    id="home-tab"
-                    data-toggle="tab"
-                    href="#home"
-                    role="tab"
-                    aria-controls="home"
-                    aria-selected="true"
-                  >About</a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    id="profile-tab"
-                    data-toggle="tab"
-                    href="#profile"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="false"
-                  >Timeline</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+          <!-------------------------UTILIZADOR----------------------->
+          <img
+            class="user-image"
+            src="../assets/13260158_1117762158265646_6591456049993627245_n.jpg"
+          />
+          <div class="user-info">
+            <p class="user-name">
+              <i class="fa fa-user icon"></i> Filipe Soares Pereira
+            </p>
+            <p class="user-nationality">
+              <i class="fa fa-flag icon"></i>Portuguesa
+            </p>
+            <p class="user-university">
+              <i class="fa fa-university icon"></i>Escola Superior de Media Artes e Design
+            </p>
+
+            <!--AQUI POMOS SE É ESTUDANTE DE ERASMUS OU ESTUDANTE NORMAL-->
+             <p class="user-erasmus">
+              <i class="fa fa-globe icon"></i>Erasmus Student
+            </p>
+            <p class="user-course">
+              <i class="fa fa-graduation-cap icon"></i>Tecnologias e Sistemas de Informação para a Web
+            </p>
+            <p class="user-email">
+              <i class="fa fa-envelope icon"></i>filipe-pereira95@hotmail.com
+            </p>
+            <p class="user-password">
+              <i class="fa fa-lock icon"></i>123456789
+            </p>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
-            <div class="profile-work">
-              <p>WORK LINK</p>
-              <a href>Website Link</a>
-              <br />
-              <a href>Bootsnipp Profile</a>
-              <br />
-              <a href>Bootply Profile</a>
-              <p>SKILLS</p>
-              <a href>Web Designer</a>
-              <br />
-              <a href>Web Developer</a>
-              <br />
-              <a href>WordPress</a>
-              <br />
-              <a href>WooCommerce</a>
-              <br />
-              <a href>PHP, .Net</a>
-              <br />
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="tab-content profile-tab" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="home"
-                role="tabpanel"
-                aria-labelledby="home-tab"
-              >
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>User Id</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Kshiti123</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Name</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Kshiti Ghelani</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Email</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>kshitighelani@gmail.com</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Phone</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>123 456 7890</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Profession</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Web Developer and Designer</p>
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Experience</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Expert</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Hourly Rate</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>10$/hr</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Total Projects</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>230</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>English Level</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Expert</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Availability</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>6 months</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label>Your Bio</label>
-                    <br />
-                    <p>Your detail description</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
+            <!--ISTO VAI SER PARA METER O PROFILE OS ACHIVEMENTS RANKING E TUDO O QUE TEM HAVER COM O UTILIZADOR NUMA SÓ PÁGINA-->
+              <b-tabs content-class="mt-4 " justified>
+                <b-tab title="First" active>
+                  <p>I'm the first tab</p>
+                </b-tab>
+                <b-tab title="Second">
+                  <p>I'm the second tab</p>
+                </b-tab>
+                <b-tab title="Very">
+                  <p>I'm the tab with the very, very long title</p>
+                </b-tab>
+                <b-tab title="Disabled" disabled>
+                  <p>I'm a disabled tab!</p>
+                </b-tab>
+              </b-tabs>
+            
+       
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script>
-
 import NavBar from "@/components/NavBar.vue";
 
-
 export default {
-name: "profile",
+  name: "profile",
   components: {
     NavBar
   }
-
 };
-
 </script>
 
 <style scoped>
-body {
-  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-}
-.emp-profile {
-  padding: 3%;
-  margin-top: 3%;
-  margin-bottom: 3%;
+/*----------------------------------UTILIZADOR------------------------------------*/
+.user-profile {
+  background-color: white;
   border-radius: 0.5rem;
-  background: #fff;
+  height: 60rem;
 }
-.profile-img {
-  text-align: center;
+
+.user-image {
+  height: 20rem;
+  margin-left: 5rem;
+  margin-top: 4rem;
+
+  border-radius: 10%;
 }
-.profile-img img {
-  width: 70%;
-  height: 100%;
+
+.user-info {
+  margin-left: 10rem;
+  margin-top: 4rem;
 }
-.profile-img .file {
-  position: relative;
-  overflow: hidden;
-  margin-top: -20%;
-  width: 70%;
-  border: none;
-  border-radius: 0;
-  font-size: 15px;
-  background: #212529b8;
+
+.user-info p.user-name {
+  font-size: 3rem;
+  margin-left: 2rem;
 }
-.profile-img .file input {
-  position: absolute;
-  opacity: 0;
-  right: 0;
-  top: 0;
+
+.user-info p.user-course {
+  font-size: 2rem;
+  margin-left: 0.9rem;
+  margin-top: 0.5rem;
 }
-.profile-head h5 {
-  color: #333;
+
+.user-info p.user-nationality {
+  font-size: 2rem;
+  margin-left: 2rem;
+  margin-top: 0.5rem;
 }
-.profile-head h6 {
-  color: #0062cc;
+
+.user-info p.user-university {
+  font-size: 2rem;
+  margin-left: 1.3rem;
+  margin-top: 0.5rem;
 }
-.profile-edit-btn {
-  border: none;
-  border-radius: 1.5rem;
-  width: 70%;
-  padding: 2%;
-  font-weight: 600;
-  color: #6c757d;
-  cursor: pointer;
+.user-info p.user-erasmus {
+  font-size: 2rem;
+  margin-left: 2.5rem;
+  margin-top: 0.5rem;
 }
-.proile-rating {
-  font-size: 12px;
-  color: #818182;
-  margin-top: 5%;
+.user-info p.user-email {
+  font-size: 2rem;
+  margin-left: 2rem;
+  margin-top: 0.5rem;
 }
-.proile-rating span {
-  color: #495057;
-  font-size: 15px;
-  font-weight: 600;
+.user-info p.user-password {
+  font-size: 2rem;
+  margin-left: 3rem;
+  margin-top: 0.5rem;
 }
-.profile-head .nav-tabs {
-  margin-bottom: 5%;
-}
-.profile-head .nav-tabs .nav-link {
-  font-weight: 600;
-  border: none;
-}
-.profile-head .nav-tabs .nav-link.active {
-  border: none;
-  border-bottom: 2px solid #0062cc;
-}
-.profile-work {
-  padding: 14%;
-  margin-top: -15%;
-}
-.profile-work p {
-  font-size: 12px;
-  color: #818182;
-  font-weight: 600;
-  margin-top: 10%;
-}
-.profile-work a {
-  text-decoration: none;
-  color: #495057;
-  font-weight: 600;
-  font-size: 14px;
-}
-.profile-work ul {
-  list-style: none;
-}
-.profile-tab label {
-  font-weight: 600;
-}
-.profile-tab p {
-  font-weight: 600;
-  color: #0062cc;
+
+.icon {
+  margin-right: 5rem;
+  font-size: 4rem;
 }
 </style>

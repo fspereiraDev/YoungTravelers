@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
-    </div>
+    
     <router-view />
   </div>
 </template>
@@ -44,7 +43,7 @@ export default {
   color: #42b983;
 }
 
-body.login {
+/*body.login {
   overflow-y: hidden !important;
   background-image: url("./assets/backg.jpg") !important;
   -webkit-background-size: cover;
@@ -57,5 +56,5 @@ body.login {
 
 body.register {
   background-image: url("./assets/login-backg2.jpg") !important;
-}
+}*/
 </style>

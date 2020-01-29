@@ -47,10 +47,6 @@
   </div>
 </template>
 
-<style scoped>
-@import "../assets/sass/register.scss";
-</style>
-
 <script>
 export default {
   name: "Register",
@@ -79,3 +75,7 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+@import "../assets/sass/register.scss";
+</style>

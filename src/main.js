@@ -3,6 +3,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import Axios from 'axios';
+import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+
 
 Vue.prototype.$http = Axios;
 const token = localStorage.getItem('token');
@@ -13,7 +18,11 @@ if (token) {
 // Require the main Sass manifest file
 require('./assets/sass/main.scss');
 
+
 Vue.config.productionTip = false;
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 new Vue({
   router,

@@ -4,11 +4,12 @@ import Login from "../views/Login.vue"
 import Register from "../views/Register.vue";
 import Home from "../views/Home.vue"
 import Profile from "../views/Profile.vue"
+import Locations from "../views/Locations.vue"
 
 Vue.use(VueRouter);
 
 const routes = [{
-    path: "/",
+    path: "/login",
     name: "login",
     component: Login
   },
@@ -18,7 +19,7 @@ const routes = [{
     component: Register
   },
   {
-    path: "/home",
+    path: "/",
     name: "home",
     component: Home
   },
@@ -26,6 +27,11 @@ const routes = [{
     path: "/profile",
     name: "profile",
     component: Profile
+  },
+  {
+    path: "/locations",
+    name: "locations",
+    component: Locations
   }
 ];
 
