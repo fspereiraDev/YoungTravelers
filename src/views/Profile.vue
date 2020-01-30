@@ -10,40 +10,42 @@
           />
 
           <b-tabs content-class="mt-4 " justified>
-            <b-tab title="Profile" active>
+            <b-tab class="profile-tab" title="Profile" active>
               <div class="row">
                 <!-------------------------UTILIZADOR----------------------->
 
                 <div class="user-info">
                   <p class="user-name">
-                    <i class="fa fa-user icon"></i>
+                    Username:
                     {{userInfo.name}}
                   </p>
+                  <hr>
                   <p class="user-nationality">
-                    <i class="fa fa-flag icon"></i>
+                    Country:
                     {{userInfo.country}}
                   </p>
+                  <hr>
                   <p class="user-university">
-                    <i class="fa fa-university icon"></i>Escola Superior de Media Artes e Design
+                    University:{{userInfo.university}}
                   </p>
-
-                  <!--AQUI POMOS SE É ESTUDANTE DE ERASMUS OU ESTUDANTE NORMAL-->
+                  <hr>
+                  
                   <p class="user-erasmus">
-                    <i class="fa fa-globe icon"></i>Erasmus Student
+                    Erasmus University: {{userInfo.erasmus_university}}
                   </p>
+                  <hr>
                   <p class="user-course">
-                    <i class="fa fa-graduation-cap icon"></i>Tecnologias e Sistemas de Informação para a Web
+                    Course:{{userInfo.course}}
                   </p>
+                  <hr>
                   <p class="user-email">
-                    <i class="fa fa-envelope icon"></i>filipe-pereira95@hotmail.com
+                    Email: {{userInfo.email}}
                   </p>
-                  <p class="user-password">
-                    <i class="fa fa-lock icon"></i>123456789
-                  </p>
+                  <hr>
                 </div>
               </div>
             </b-tab>
-            <b-tab title="Prefered Spots" class>
+            <b-tab title="Prefered Spots" class="prefered-spots-tab" >
               <div class="row">
                 <div class="col col-cards">
                   <b-card
@@ -78,7 +80,7 @@
                 </div>
               </div>
             </b-tab>
-            <b-tab title="Map">
+            <b-tab class="map-tab" title="Map">
               
              <google-map/>
              
@@ -130,6 +132,7 @@ export default {
       name: "",
       country: "",
       university: "",
+      erasmus_university: "",
       course: "",
       email: "",
       password: "",
@@ -145,6 +148,7 @@ export default {
           name: this.users[i].name,
           country: this.users[i].country,
           university: this.users[i].university,
+          erasmus_university: this.users[i].erasmus_university,
           course: this.users[i].course,
           email: this.users[i].email,
           password: this.users[i].password,
@@ -169,9 +173,11 @@ export default {
 /*----------------------------------UTILIZADOR------------------------------------*/
 
 .user-profile {
-  background-color: rgb(202, 231, 200);
+  background-color: rgb(255, 255, 255);
   border-radius: 0.5rem;
   height: 60rem;
+  box-shadow: 5px 5px 8px 5px #888888;
+  margin-bottom: 2rem;
 }
 
 .user-image {
@@ -183,45 +189,45 @@ export default {
 }
 
 .user-info {
-  margin-left: 6rem;
+  margin-left: 2rem;
   margin-top: 4rem;
 }
 
 .user-info p.user-name {
-  font-size: 3rem;
-  margin-left: 2rem;
+  font-size: 2rem;
+  margin-left: 0.5rem;
 }
 
 .user-info p.user-course {
   font-size: 2rem;
-  margin-left: 0.9rem;
+  margin-left: 0.5rem;
   margin-top: 0.5rem;
 }
 
 .user-info p.user-nationality {
   font-size: 2rem;
-  margin-left: 2rem;
+  margin-left: 0.5rem;
   margin-top: 0.5rem;
 }
 
 .user-info p.user-university {
   font-size: 2rem;
-  margin-left: 1.3rem;
+  margin-left: 0.5rem;
   margin-top: 0.5rem;
 }
 .user-info p.user-erasmus {
   font-size: 2rem;
-  margin-left: 2.5rem;
+  margin-left: 0.5rem;
   margin-top: 0.5rem;
 }
 .user-info p.user-email {
   font-size: 2rem;
-  margin-left: 2rem;
+  margin-left: 0.5rem;
   margin-top: 0.5rem;
 }
 .user-info p.user-password {
   font-size: 2rem;
-  margin-left: 3rem;
+  margin-left: 0.5rem;
   margin-top: 0.5rem;
 }
 

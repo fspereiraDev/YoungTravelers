@@ -83,7 +83,24 @@ export default {
               icon: "success",
               timer: 1000
             });
-            this.$router.push("/");
+           
+
+            for (let j = 0; j < this.users.length; j++) {
+
+                if (email == this.users[i].email && this.users[i].user_type == 2 ) {
+                  
+                  this.$router.push("/");
+                }
+                if (email == this.users[i].email && this.users[i].user_type == 1 ) {
+                  
+                  this.$router.push("/adminpage");
+                }
+                
+            }
+            
+                
+            
+            
           } else {
             await this.$swal({
               title: "ERROR",

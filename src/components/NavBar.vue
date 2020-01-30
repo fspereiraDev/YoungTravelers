@@ -13,7 +13,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-button to="/login" class="my-4" type="submit">Login</b-button>
+          <b-button to="/login" class="my-4" type="submit" >Login</b-button>
           <!-- <b-button to="/login" class="my-4" type="submit" @click="logout">Logout</b-button> -->
 
           <b-nav-item-dropdown right>
@@ -100,8 +100,6 @@ export default {
         });
       });
     },
-
-    isLogIn() {}
   }
 };
 </script>

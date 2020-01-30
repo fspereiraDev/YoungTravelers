@@ -216,10 +216,11 @@ export default new Vuex.Store({
     },
 
     getLastId(state) {
+      let lastId = 0
       if (state.users.length > 0) {
-        return state.users[state.users.length - 1].id + 1;
+        lastId = state.users[state.users.length - 1].id + 1
       }
-      return 1;
+      return lastId
     },
 
     getLocations: state => {
@@ -360,7 +361,6 @@ export default new Vuex.Store({
     prepareLocalReviews(context) {
       context.commit('PREPARE_LOCAL_REVIEWS')
     },
-
   },
   modules: {}
 });
