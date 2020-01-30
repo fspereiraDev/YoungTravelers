@@ -4,75 +4,117 @@
     <div class="container">
       <div class="col user-profile">
         <div class="row">
-          <!-------------------------UTILIZADOR----------------------->
           <img
             class="user-image"
             src="../assets/13260158_1117762158265646_6591456049993627245_n.jpg"
           />
-          <div class="user-info">
-            <p class="user-name">
-              <i class="fa fa-user icon"></i>
-              {{userInfo.name}}
-            </p>
-            <p class="user-nationality">
-              <i class="fa fa-flag icon"></i>
-              {{userInfo.country}}
-            </p>
-            <p class="user-university">
-              <i class="fa fa-university icon"></i>Escola Superior de Media Artes e Design
-            </p>
 
-            <!--AQUI POMOS SE É ESTUDANTE DE ERASMUS OU ESTUDANTE NORMAL-->
-            <p class="user-erasmus">
-              <i class="fa fa-globe icon"></i>Erasmus Student
-            </p>
-            <p class="user-course">
-              <i class="fa fa-graduation-cap icon"></i>Tecnologias e Sistemas de Informação para a Web
-            </p>
-            <p class="user-email">
-              <i class="fa fa-envelope icon"></i>filipe-pereira95@hotmail.com
-            </p>
-            <p class="user-password">
-              <i class="fa fa-lock icon"></i>123456789
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <!--ISTO VAI SER PARA METER O PROFILE OS ACHIVEMENTS RANKING E TUDO O QUE TEM HAVER COM O UTILIZADOR NUMA SÓ PÁGINA-->
           <b-tabs content-class="mt-4 " justified>
-            <b-tab title="First" active>
-              <p>I'm the first tab</p>
+            <b-tab title="Profile" active>
+              <div class="row">
+                <!-------------------------UTILIZADOR----------------------->
+
+                <div class="user-info">
+                  <p class="user-name">
+                    <i class="fa fa-user icon"></i>
+                    {{userInfo.name}}
+                  </p>
+                  <p class="user-nationality">
+                    <i class="fa fa-flag icon"></i>
+                    {{userInfo.country}}
+                  </p>
+                  <p class="user-university">
+                    <i class="fa fa-university icon"></i>Escola Superior de Media Artes e Design
+                  </p>
+
+                  <!--AQUI POMOS SE É ESTUDANTE DE ERASMUS OU ESTUDANTE NORMAL-->
+                  <p class="user-erasmus">
+                    <i class="fa fa-globe icon"></i>Erasmus Student
+                  </p>
+                  <p class="user-course">
+                    <i class="fa fa-graduation-cap icon"></i>Tecnologias e Sistemas de Informação para a Web
+                  </p>
+                  <p class="user-email">
+                    <i class="fa fa-envelope icon"></i>filipe-pereira95@hotmail.com
+                  </p>
+                  <p class="user-password">
+                    <i class="fa fa-lock icon"></i>123456789
+                  </p>
+                </div>
+              </div>
             </b-tab>
-            <b-tab title="Second">
-              <p>I'm the second tab</p>
+            <b-tab title="Prefered Spots" class>
+              <div class="row">
+                <div class="col col-cards">
+                  <b-card
+                    title="Card Title"
+                    img-src="https://picsum.photos/600/300/?image=25"
+                    img-alt="Image"
+                    img-top
+                    tag="article"
+                    style="max-width: 20rem;"
+                    class="mb-2"
+                  >
+                    <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
+
+                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                  </b-card>
+                </div>
+
+                <div class="col col-cards">
+                  <b-card
+                    title="Card Title"
+                    img-src="https://picsum.photos/600/300/?image=25"
+                    img-alt="Image"
+                    img-top
+                    tag="article"
+                    style="max-width: 20rem;"
+                    class="mb-2"
+                  >
+                    <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
+
+                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                  </b-card>
+                </div>
+              </div>
             </b-tab>
-            <b-tab title="Very">
-              <p>I'm the tab with the very, very long title</p>
-            </b-tab>
-            <b-tab title="Disabled" disabled>
-              <p>I'm a disabled tab!</p>
+            <b-tab title="Map">
+              
+             <google-map/>
+             
             </b-tab>
           </b-tabs>
         </div>
       </div>
+      
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
+     
 <script>
 import NavBar from "@/components/NavBar.vue";
+import GoogleMap from "@/components/Map.vue";
+import Footer from "@/components/Footer.vue";
 import { mapState } from "vuex";
 
 export default {
   name: "Profile",
   components: {
-    NavBar
+    NavBar,
+    GoogleMap,
+    Footer
   },
   data() {
     return {
       users: "",
       userLog: "",
-      userInfo: {}
+      userInfo: {},
+
+      //map code
+      
+
     };
   },
   mounted() {
@@ -114,16 +156,20 @@ export default {
       }
     }
   },
+  methods: {
+  },
   computed: mapState({
     getUsers: state => state.users
   })
 };
 </script>
+    
 
 <style scoped>
 /*----------------------------------UTILIZADOR------------------------------------*/
+
 .user-profile {
-  background-color: white;
+  background-color: rgb(202, 231, 200);
   border-radius: 0.5rem;
   height: 60rem;
 }
@@ -137,7 +183,7 @@ export default {
 }
 
 .user-info {
-  margin-left: 10rem;
+  margin-left: 6rem;
   margin-top: 4rem;
 }
 
@@ -182,5 +228,24 @@ export default {
 .icon {
   margin-right: 5rem;
   font-size: 4rem;
+}
+
+.tabs {
+  max-width: 100rem;
+  margin-top: 2rem;
+  margin-left: 3rem;
+}
+.vue-map-container {
+  height: 450px;
+  width: 70rem;
+}
+
+.card {
+  width: 20rem;
+  height: 27rem;
+}
+.col-cards {
+  display: block;
+  margin: 0;
 }
 </style>

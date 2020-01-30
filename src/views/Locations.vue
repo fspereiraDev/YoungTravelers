@@ -19,18 +19,21 @@
         </b-card>
       </b-row>
     </b-container>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import NavBar from "../components/NavBar.vue";
+import Footer from "../components/Footer.vue"
 import { mapState } from "vuex";
 // import { mapActions } from "vuex";
 
 export default {
   name: "Locations",
   components: {
-    NavBar
+    NavBar,
+    Footer
   },
   data() {
     return {

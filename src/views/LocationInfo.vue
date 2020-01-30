@@ -35,6 +35,26 @@
         <b-button @click="doReview()">Rate</b-button>
       </b-form-group>
     </b-container>
+    <!-- <b-container>
+      <b-img center src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
+
+    </b-container>-->
+    <b-jumbotron bg-variant="info" text-variant="white" border-variant="dark">
+      <template v-slot:header>BootstrapVue</template>
+
+      <template v-slot:lead>
+        This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+        featured content or information.
+      </template>
+
+      <hr class="my-4" />
+
+      <p>
+        It uses utility classes for typography and spacing to space content out within the larger
+        container.
+      </p>
+    </b-jumbotron>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -42,6 +62,7 @@
 import NavBar from "../components/NavBar.vue";
 import { mapGetters } from "vuex";
 // import { mapState } from "vuex";
+import Footer from "../components/Footer.vue";
 
 export default {
   name: "LocationInfo",
@@ -110,6 +131,8 @@ export default {
 
       console.log(this.reviews_data);
     }
+    NavBar,
+    Footer
   }
 };
 </script>

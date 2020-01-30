@@ -25,6 +25,14 @@ if (token) {
 // Require the main Sass manifest file
 require('./assets/sass/main.scss');
 
+require("dotenv").config();
+
+import * as VueGoogleMaps from "vue2-google-maps";
+Vue.use(VueGoogleMaps, {
+  load: {key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY}
+});
+
+
 
 Vue.config.productionTip = false;
 
