@@ -186,10 +186,11 @@ export default new Vuex.Store({
     },
 
     getLastId(state) {
+      let lastId = 0
       if (state.users.length > 0) {
-        return state.users[state.users.length - 1].id + 1;
+        lastId = state.users[state.users.length - 1].id + 1
       }
-      return 1;
+      return lastId
     },
 
     getLocations: state => {
@@ -236,6 +237,14 @@ export default new Vuex.Store({
     },
     ADD_REVIEWS(state, payload) {
       state.reviews.push(payload);
+    },
+    REMOVE: (state, index) => {
+
+        for (let i = 0; i < state.users.length; i++) {
+          if (state.users[i].id == index) {
+            state.users.splice(i, 1)
+          }
+        }
     },
 
     SET_ITINERARIES(state, payload) {
@@ -315,7 +324,9 @@ export default new Vuex.Store({
     prepareLocalReviews(context) {
       context.commit('PREPARE_LOCAL_REVIEWS')
     },
-    
+    remove: (context, index) => {
+      context.commit('REMOVE', index);
+    }
   },
   modules: {}
 });
