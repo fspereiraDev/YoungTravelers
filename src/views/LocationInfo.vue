@@ -67,7 +67,8 @@ import Footer from "../components/Footer.vue";
 export default {
   name: "LocationInfo",
   components: {
-    NavBar
+    NavBar,
+    Footer
   },
   data() {
     return {
@@ -131,8 +132,7 @@ export default {
 
       console.log(this.reviews_data);
     }
-    NavBar,
-    Footer
+    
   }
 };
 </script>
