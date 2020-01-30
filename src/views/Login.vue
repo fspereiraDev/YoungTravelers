@@ -55,10 +55,12 @@ export default {
     async login() {
       let email = this.loginInput.email;
       let password = this.loginInput.password;
-      //console.log("Email: " + email + " & password: " + password);
+      // console.log("Email: " + email + " & password: " + password);
+      // console.log(this.users);
       let loginConfirm = "";
 
       for (let i = 0; i < this.users.length; i++) {
+        console.log("FOR");
         if (
           email == this.users[i].email &&
           password == this.users[i].password

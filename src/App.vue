@@ -8,12 +8,19 @@
 export default {
   created() {
     let users = localStorage.getItem("users");
-    if (!users) {
-      console.log("hey");
+    let locations = localStorage.getItem("locations");
+    let reviews = localStorage.getItem("reviews");
 
-      this.$store.dispatch("prepareLocal");
+    if (!users && !locations && !reviews) {
+      this.$store.dispatch(
+        "prepareLocalUsers",
+        "prepareLocalLocatios",
+        "prepareLocalReviews"
+      );
     } else {
       this.$store.dispatch("setUsers", JSON.parse(users));
+      this.$store.dispatch("setLocations", JSON.parse(locations));
+      this.$store.dispatch("addReviews", JSON.parse(reviews));
     }
     console.log(users);
   },

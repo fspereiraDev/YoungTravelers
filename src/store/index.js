@@ -9,10 +9,48 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLoggedIn: !!localStorage.getItem("token"),
-    users: [],
+    users: [{
+        id: "1",
+        name: "Admin",
+        country: "Portugal",
+        university: "",
+        course: "",
+        email: "admin_yt@gmail.com",
+        password: "admin",
+        password2: "admin",
+        tags: "",
+        user_type: 1
+      },
+      {
+        id: "2",
+        name: "John Doe",
+        country: "England",
+        university: "England University",
+        erasmus_university: "Escola Superior de Media Artes e Design",
+        course: "Tecnologias e Sistemas de Informação para a Web",
+        email: "john@gmail.com",
+        password: "john123",
+        password2: "john123",
+        tags: ["desporto", "literatura", "música"],
+        user_type: 2
+      },
+      {
+        id: "3",
+        name: "Rokas Grabauskas",
+        country: "Lithuania",
+        university: "Lithuania University",
+        erasmus_university: "Escola Superior de Media Artes e Design",
+        course: "Tecnologias e Sistemas de Informação para a Web",
+        email: "rokas@gmail.com",
+        password: "rokas123",
+        password2: "rokas123",
+        tags: ["Desporto", "Literatura", "Música"],
+        user_type: 2
+      }
+    ],
     locations: [{
         id: 1,
-        image: "https://live.staticflickr.com/4628/39267662975_36a9925e17_b.jpg",
+        image: "https://www.comerciocomhistoria.gov.pt/wp-content/uploads/import/listings/3351_imagem2.jpg",
         name: "Livraria Lello",
         lat: "41.1469055",
         long: "-8.6169633",
@@ -24,7 +62,7 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        image: "https://thumbs.web.sapo.io/?W=800&H=0&delay_optim=1&epic=MzRl8sjFub4fQffy8Qz2RzXsXNLlA+uzJcBOCCkrQUn8fYkrzpSga7rY/xtAthfpgEW0xV5Z7bs3LpwQbW8xXwp8/PfwzIu2ScbAPhmUs0XEsc0=",
+        image: "https://files.app.fcporto.pt/sources/5c90c108c4b3b1J17qAEFdZDq1XiD.jpg",
         name: "Estádio do Dragão",
         lat: "",
         long: "",
@@ -44,7 +82,7 @@ export default new Vuex.Store({
         description: "O Coliseu do Porto é uma sala de espectáculos localizada na cidade do Porto, em Portugal. O edifício foi classificado como Monumento de Interesse Público pela Portaria n.º 637/2012, de 2 de novembro de 2012, publicada em Diário da República.",
         rating: "",
         website: "https://www.coliseu.pt/",
-        tag: "Eventos"
+        tag: "Música"
       },
       {
         id: 3,
@@ -56,11 +94,24 @@ export default new Vuex.Store({
         description: "O Coliseu do Porto é uma sala de espectáculos localizada na cidade do Porto, em Portugal. O edifício foi classificado como Monumento de Interesse Público pela Portaria n.º 637/2012, de 2 de novembro de 2012, publicada em Diário da República.",
         rating: "",
         website: "https://www.coliseu.pt/",
-        tag: "Eventos"
+        tag: "Música"
+      }
+    ],
+    currentLocation: {},
+    reviews: [{
+        id: 1,
+        idUser: 1,
+        idLocation: 1,
+        texto: "Beautiful place, I've always wanted to go there! So much history inside",
+        rate: 4
       },
-
-
-
+      {
+        id: 2,
+        idUser: 1,
+        idLocation: 2,
+        texto: "One of the biggest stadiums I've ever visited! A lot of great european nights in that picth!",
+        rate: 5
+      }
     ]
   },
 
@@ -77,7 +128,12 @@ export default new Vuex.Store({
     getUserId: state => {
       return state.users.id
     },
-
+    getCurrentLocation: state => {
+      return state.currentLocation
+    },
+    getReviews: state => {
+      return state.reviews
+    }
   },
   mutations: {
     LOGIN(state) {
@@ -96,24 +152,27 @@ export default new Vuex.Store({
     SET_USERS(state, payload) {
       state.users = payload;
     },
-    /* Function that prepares localStorage with an empty array that will be
-    populated once when the 1st register is done. So in this case we use it to store
-    the information about the admin */
-    PREPARE_LOCAL(state) {
-      let admin = {
-        name: "Fábio Carvalho",
-        country: "Portugal",
-        university: "Escola Superior de media Artes e Design",
-        course: "Tecnologias e Desenvolvimento Web",
-        email: "fabio@gmail.com",
-        password: "fabio123",
-        password2: "fabio123",
-        tags: "",
-        is_admin: null
-      }
-
-      state.users.push(admin);
+    CURRENT_LOCATION(state, payload) {
+      state.currentLocation = payload;
+    },
+    SET_LOCATIONS(state, payload) {
+      state.locations = payload;
+    },
+    ADD_REVIEWS(state, payload) {
+      state.reviews = payload
+    },
+    /* Mutations that will prepare localStorage with empty arrays that will be
+    populated with data on create */
+    PREPARE_LOCAL_USERS(state) {
+      state.users;
+    },
+    PREPARE_LOCAL_LOCATIONS(state) {
+      state.locations;
+    },
+    PREPARE_LOCAL_REVIEWS(state) {
+      state.reviews;
     }
+
   },
   actions: {
     login({
@@ -145,11 +204,29 @@ export default new Vuex.Store({
       context.commit('SET_USERS', data)
     },
 
-    prepareLocal(context) {
-      context.commit('PREPARE_LOCAL')
+    addReview(context, data) {
+      context.commit('ADD_REVIEW', data)
+    },
+
+    currentLocation(context, data) {
+      context.commit('CURRENT_LOCATION', data);
+    },
+
+    addReviews(context, data) {
+      context.commit('ADD_REVIEWS', data)
+    },
+
+    prepareLocalUsers(context) {
+      context.commit('PREPARE_LOCAL_USERS')
+    },
+
+    preapareLocalLocations(context) {
+      context.commit('PREPARE_LOCAL_LOCATIONS')
+    },
+
+    prepareLocalReviews(context) {
+      context.commit('PREPARE_LOCAL_REVIEWS')
     }
-
-
   },
   modules: {}
 });

@@ -25,7 +25,7 @@
               </em>
             </template>
             <b-dropdown-item to="/profile">Profile</b-dropdown-item>
-            <b-dropdown-button to="/login" @click="logout">Sign Out</b-dropdown-button>
+            <b-button to="/login" @click="logout">Sign Out</b-button>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -88,6 +88,7 @@ export default {
   methods: {
     logout: function() {
       this.$store.dispatch("logout").then(() => {
+        // this.$store.dispatch(""); !!! passar informação para o prepare local !!!!
         this.$swal({
           title: "Goodbye",
           text: "Loggin Out",

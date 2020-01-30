@@ -15,7 +15,7 @@
           class="location-card lg-3"
         >
           <b-card-text>{{spot.description}}</b-card-text>
-          <b-button to="/locationInfo" variant="primary">View Details</b-button>
+          <b-button to="/locationInfo" variant="primary" @click="addCurrentSpot(spot)">View Details</b-button>
         </b-card>
       </b-row>
     </b-container>
@@ -25,6 +25,7 @@
 <script>
 import NavBar from "../components/NavBar.vue";
 import { mapState } from "vuex";
+// import { mapActions } from "vuex";
 
 export default {
   name: "Locations",
@@ -41,10 +42,15 @@ export default {
     console.log(this.spots);
   },
   methods: {
-    hasSpots() {}
+    addCurrentSpot(spot) {
+      console.log(spot);
+      let currentSpot = spot;
+      this.$store.dispatch("currentLocation", currentSpot);
+    }
   },
   computed: mapState({
-    getLocations: state => state.locations
+    getLocations: state => state.locations,
+    getCurrentLocation: state => state.currentLocation
   })
 };
 </script>
