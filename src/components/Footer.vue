@@ -1,5 +1,5 @@
 <template>
-  <div class="row row-footer">
+  <div class="row row-footer" >
     <div class="footer-content">
       <p>All rights reserved @Young Travelers.</p>
       <p>Visit our social media accounts to stay on track on further developments.</p>
@@ -28,7 +28,7 @@ export default {
 
 .footer-content .fa {
   color: white;
-  margin-left: 9vh;
+  margin-left: 8vh;
 }
 .row-footer {
   background-color: black;
