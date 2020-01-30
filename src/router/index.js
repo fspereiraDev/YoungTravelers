@@ -7,6 +7,7 @@ import Profile from "../views/Profile.vue";
 import Locations from "../views/Locations.vue";
 import LocationInfo from "../views/LocationInfo.vue"
 import AdminPage from "../views/AdminPage.vue"
+import ItinerariePage from "../views/Itineraries.vue"
 
 Vue.use(VueRouter);
 
@@ -44,6 +45,11 @@ const routes = [{
     path: "/adminPage",
     name: "adminPage",
     component: AdminPage
+  },
+  {
+    path:"/itineraries",
+    name: "itineraries",
+    component: ItinerariePage
   }
 ];
 

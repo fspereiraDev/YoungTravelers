@@ -33,6 +33,7 @@ export default {
 .row-footer {
   background-color: black;
   height: 20vh;
-  max-width: 100%;
+  width: 153.4rem;
+
 }
 </style>
