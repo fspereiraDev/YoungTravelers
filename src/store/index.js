@@ -112,7 +112,20 @@ export default new Vuex.Store({
         texto: "One of the biggest stadiums I've ever visited! A lot of great european nights in that picth!",
         rate: 5
       }
-    ]
+    ],
+    locationVisitors: [{
+        idLocation: 1,
+        idUser: "3",
+        name: "Rokas Grabauskas",
+        nameLocation: "Livraria Lello"
+      },
+      {
+        idLocation: 2,
+        idUser: "3",
+        name: "Rokas Grabauskas",
+        nameLocation: "Estádio do Dragão"
+      }
+    ],
   },
 
   getters: {
@@ -122,17 +135,32 @@ export default new Vuex.Store({
     getUsers: state => {
       return state.users
     },
+
+    getLastId(state) {
+      if (state.users.length > 0) {
+        return state.users[state.users.length - 1].id + 1;
+      }
+      return 1;
+    },
+
     getLocations: state => {
       return state.locations
     },
+
     getUserId: state => {
       return state.users.id
     },
+
     getCurrentLocation: state => {
       return state.currentLocation
     },
+
     getReviews: state => {
       return state.reviews
+    },
+
+    getLocationVisitors: state => {
+      return state.locationVisits
     }
   },
   mutations: {
@@ -161,6 +189,10 @@ export default new Vuex.Store({
     ADD_REVIEWS(state, payload) {
       state.reviews.push(payload);
     },
+    SET_LOCATION_VISITORS(state, payload) {
+      state.locationVisitors.push(payload)
+    },
+
     /* Mutations that will prepare localStorage with empty arrays that will be
     populated with data on create */
     PREPARE_LOCAL_USERS(state) {
@@ -206,6 +238,10 @@ export default new Vuex.Store({
 
     setLocations(context, data) {
       context.commit('SET_LOCATIONS', data)
+    },
+
+    setLocationVisitors(context, data) {
+      context.commit('SET_LOCATION_VISITORS', data)
     },
 
     addReviews(context, data) {
