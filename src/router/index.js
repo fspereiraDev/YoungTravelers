@@ -6,6 +6,7 @@ import Home from "../views/Home.vue";
 import Profile from "../views/Profile.vue";
 import Locations from "../views/Locations.vue";
 import LocationInfo from "../views/LocationInfo.vue"
+import AdminPage from "../views/AdminPage.vue"
 
 Vue.use(VueRouter);
 
@@ -38,6 +39,11 @@ const routes = [{
     path: "/locationInfo",
     name: "locationInfo",
     component: LocationInfo
+  },
+  {
+    path: "/adminPage",
+    name: "adminPage",
+    component: AdminPage
   }
 ];
 
