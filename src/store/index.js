@@ -184,15 +184,26 @@ export default new Vuex.Store({
     getUsers: state => {
       return state.users
     },
+
+    getLastId(state) {
+      if (state.users.length > 0) {
+        return state.users[state.users.length - 1].id + 1;
+      }
+      return 1;
+    },
+
     getLocations: state => {
       return state.locations
     },
+
     getUserId: state => {
       return state.users.id
     },
+
     getCurrentLocation: state => {
       return state.currentLocation
     },
+
     getReviews: state => {
       return state.reviews
     },
@@ -276,6 +287,10 @@ export default new Vuex.Store({
 
     setLocations(context, data) {
       context.commit('SET_LOCATIONS', data)
+    },
+
+    setLocationVisitors(context, data) {
+      context.commit('SET_LOCATION_VISITORS', data)
     },
 
     addReviews(context, data) {

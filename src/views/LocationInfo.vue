@@ -13,7 +13,7 @@
         <p align="center">
           <a class="website" target="currentLocation.website">Visit Website</a>
         </p>
-        <b-button variant="info">Been there</b-button>
+        <b-button variant="info" @click="beenThere()">Been there</b-button>
       </section>
     </b-container>
     <!-- Form to send review about one spot -->
@@ -27,7 +27,7 @@
           max-rows="10"
         ></b-form-textarea>
 
-        <div class="form-group-rate">
+        <div class="form-group-rate" v-if="hasbeenThere()">
           <label for="range-1">Rate this spot from 1 to 5:</label>
           <b-form-input id="range-1" v-model="data.rate" type="range" min="1" max="5"></b-form-input>
           <div class="mt-2">Value: {{ data.rate }}</div>
@@ -78,17 +78,22 @@ export default {
 
       spot: {},
       data: {
-        // name: "",
-        // idReview: "",
         texto: "",
         rate: ""
       },
       reviews_data: {
+        idUser: "",
         name: "",
-        idReview: "",
-        idSpot: "",
+        idLocation: "",
         texto: "",
         rate: ""
+      },
+      // Object to receive data about the presence of the user in certain location
+      spot_visited: {
+        idUser: "",
+        name: "",
+        idLocation: "",
+        nameLocation: ""
       }
     };
   },
@@ -101,16 +106,16 @@ export default {
     console.log(JSON.stringify(this.userLog));
     // Object to receive all the user info
     this.userInfo = {
-      name: ""
+      name: "",
+      idUsers: ""
     };
-
-    console.log("USER NAME:" + this.userInfo.name);
     // Get all information that the fake Token (comparing with the data in the store) can give from the logged user
     // in this case, we get the name so we can use it in the review
     for (let i = 0; i < this.users.length; i++) {
       if (this.userLog.email == this.users[i].email) {
         this.userInfo = {
-          name: this.users[i].name
+          name: this.users[i].name,
+          idUser: this.users[i].id
         };
       }
     }
@@ -124,15 +129,46 @@ export default {
   },
   methods: {
     async doReview() {
+      this.reviews_data.idUser = this.userInfo;
       this.reviews_data.name = this.userInfo.name;
-      this.reviews_data.idSpot = this.currentLocation.id;
+      this.reviews_data.idLocation = this.currentLocation.id;
       this.reviews_data.texto = this.data.texto;
       this.reviews_data.rate = this.data.rate;
 
-      this.$store.dispatch("addReviews", this.reviews_data);
-      console.log("VUEX REVIEWS: " + this.reviews);
+      this.$store
+        .dispatch("addReviews", this.reviews_data)
+        .then(() =>
+          localStorage.setItem("reviews", JSON.stringify(this.reviews_data))
+        );
+    },
+    // Function that will allow the user the tell that he has been in a spot
+    // so he can comment about it
+    beenThere() {
+      this.spot_visited.idUser = this.userInfo.idUser;
+      this.spot_visited.name = this.userInfo.name;
+      this.spot_visited.idLocation = this.currentLocation.id;
+      this.spot_visited.nameLocation = this.currentLocation.name;
+      // console.log("I'VE BEEN HERE: " + JSON.stringify(this.spot_visited));
 
-      localStorage.setItem("reviews", JSON.stringify(this.reviews_data));
+      this.$store
+        .dispatch("setLocationVisitors", this.spot_visited)
+        .then(() =>
+          localStorage.setItem(
+            "location_visitors",
+            JSON.stringify(this.spot_visited)
+          )
+        );
+    },
+
+    hasbeenThere() {
+      for (let i = 0; i < this.$store.state.locationVisitors; i++) {
+        console.log("FOR CYCLE");
+        if (
+          this.userInfo.idUser !== this.$store.state.locationVisitors[i].idUser
+        ) {
+          console.log("ESTE USER NAO ESTÁ LÁ");
+        }
+      }
     }
   }
 };
