@@ -35,25 +35,23 @@
         <b-button @click="doReview()">Rate</b-button>
       </b-form-group>
     </b-container>
-    <!-- <b-container>
-      <b-img center src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image"></b-img>
 
-    </b-container>-->
-    <b-jumbotron bg-variant="info" text-variant="white" border-variant="dark">
-      <template v-slot:header>BootstrapVue</template>
-
-      <template v-slot:lead>
-        This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-        featured content or information.
-      </template>
-
-      <hr class="my-4" />
-
-      <p>
-        It uses utility classes for typography and spacing to space content out within the larger
-        container.
-      </p>
-    </b-jumbotron>
+    <b-container>
+      <ul class="list-group" v-for="(review, index) in reviews" :key="index">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-xs-2 col-md-1">
+              <img src="http://placehold.it/80" class="img-circle img-responsive" alt />
+            </div>
+            <div class="col-xs-10 col-md-11">
+              <div class="review-text">{{review.texto}}</div>
+              <div class="review-rate">Rate: {{review.rate}}</div>
+              <div class="review-user">By: {{review.nameUser}}</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </b-container>
     <Footer></Footer>
   </div>
 </template>
@@ -67,7 +65,8 @@ import Footer from "../components/Footer.vue";
 export default {
   name: "LocationInfo",
   components: {
-    NavBar
+    NavBar,
+    Footer
   },
   data() {
     return {
@@ -75,9 +74,8 @@ export default {
       // that are going to be used for the reviews
       userLog: "",
       users: "",
-      userInfo: "",
+      userInfo: {},
 
-      value: "",
       spot: {},
       data: {
         // name: "",
@@ -85,27 +83,30 @@ export default {
         texto: "",
         rate: ""
       },
-      reviews_data: [
-        {
-          name: "",
-          idReview: "",
-          idSpot: "",
-          texto: "",
-          rate: ""
-        }
-      ]
+      reviews_data: {
+        name: "",
+        idReview: "",
+        idSpot: "",
+        texto: "",
+        rate: ""
+      }
     };
   },
   mounted() {
     // Get all users from the store
     this.users = this.getusers;
+    console.log("USERS: " + JSON.stringify(this.users));
     // Get user information from the token
     this.userLog = JSON.parse(localStorage.getItem("token"));
+    console.log(JSON.stringify(this.userLog));
     // Object to receive all the user info
     this.userInfo = {
       name: ""
     };
+
+    console.log("USER NAME:" + this.userInfo.name);
     // Get all information that the fake Token (comparing with the data in the store) can give from the logged user
+    // in this case, we get the name so we can use it in the review
     for (let i = 0; i < this.users.length; i++) {
       if (this.userLog.email == this.users[i].email) {
         this.userInfo = {
@@ -124,15 +125,15 @@ export default {
   methods: {
     async doReview() {
       this.reviews_data.name = this.userInfo.name;
-      this.reviews_data.idReview = this.data.idReview;
       this.reviews_data.idSpot = this.currentLocation.id;
       this.reviews_data.texto = this.data.texto;
       this.reviews_data.rate = this.data.rate;
 
-      console.log(this.reviews_data);
+      this.$store.dispatch("addReviews", this.reviews_data);
+      console.log("VUEX REVIEWS: " + this.reviews);
+
+      localStorage.setItem("reviews", JSON.stringify(this.reviews_data));
     }
-    NavBar,
-    Footer
   }
 };
 </script>
@@ -223,5 +224,12 @@ export default {
   height: 3rem;
   width: 10rem;
   font-size: 14px;
+}
+
+.list-group-item {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  margin-top: 15px;
+  width: 100%;
 }
 </style>

@@ -12,14 +12,11 @@
 
 <script>
 export default {
-
-    name: "Footer",
-
+  name: "Footer"
 };
 </script>
 
 <style>
-
 .footer-content {
   margin-top: 5vh;
   margin-left: 80vh;
@@ -36,6 +33,6 @@ export default {
 .row-footer {
   background-color: black;
   height: 20vh;
+  max-width: 100%;
 }
-
 </style>

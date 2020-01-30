@@ -100,14 +100,14 @@ export default new Vuex.Store({
     currentLocation: {},
     reviews: [{
         id: 1,
-        idUser: 1,
+        nameUser: "Rokas Grabauskas",
         idLocation: 1,
         texto: "Beautiful place, I've always wanted to go there! So much history inside",
         rate: 4
       },
       {
         id: 2,
-        idUser: 1,
+        nameUser: "John Doe",
         idLocation: 2,
         texto: "One of the biggest stadiums I've ever visited! A lot of great european nights in that picth!",
         rate: 5
@@ -159,7 +159,7 @@ export default new Vuex.Store({
       state.locations = payload;
     },
     ADD_REVIEWS(state, payload) {
-      state.reviews = payload
+      state.reviews.push(payload);
     },
     /* Mutations that will prepare localStorage with empty arrays that will be
     populated with data on create */
@@ -204,16 +204,16 @@ export default new Vuex.Store({
       context.commit('SET_USERS', data)
     },
 
-    addReview(context, data) {
-      context.commit('ADD_REVIEW', data)
-    },
-
-    currentLocation(context, data) {
-      context.commit('CURRENT_LOCATION', data);
+    setLocations(context, data) {
+      context.commit('SET_LOCATIONS', data)
     },
 
     addReviews(context, data) {
       context.commit('ADD_REVIEWS', data)
+    },
+
+    currentLocation(context, data) {
+      context.commit('CURRENT_LOCATION', data);
     },
 
     prepareLocalUsers(context) {

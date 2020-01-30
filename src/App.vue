@@ -11,15 +11,21 @@ export default {
     let locations = localStorage.getItem("locations");
     let reviews = localStorage.getItem("reviews");
 
-    if (!users && !locations && !reviews) {
-      this.$store.dispatch(
-        "prepareLocalUsers",
-        "prepareLocalLocatios",
-        "prepareLocalReviews"
-      );
+    if (!users) {
+      this.$store.dispatch("prepareLocalUsers");
     } else {
       this.$store.dispatch("setUsers", JSON.parse(users));
+    }
+
+    if (!locations) {
+      this.$store.dispatch("prepareLocalLocations");
+    } else {
       this.$store.dispatch("setLocations", JSON.parse(locations));
+    }
+
+    if (!reviews) {
+      this.$store.dispatch("prepareLocalReviews");
+    } else {
       this.$store.dispatch("addReviews", JSON.parse(reviews));
     }
     console.log(users);
