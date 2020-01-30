@@ -18,6 +18,7 @@
     </b-container>
     <!-- Form to send review about one spot -->
     <b-container>
+      <h1 class="title">Have you been here? Send your review.</h1>
       <b-form-group>
         <b-form-textarea
           id="textarea"
@@ -27,12 +28,12 @@
           max-rows="10"
         ></b-form-textarea>
 
-        <div class="form-group-rate" v-if="hasbeenThere()">
+        <div class="form-group-rate">
           <label for="range-1">Rate this spot from 1 to 5:</label>
           <b-form-input id="range-1" v-model="data.rate" type="range" min="1" max="5"></b-form-input>
           <div class="mt-2">Value: {{ data.rate }}</div>
         </div>
-        <b-button @click="doReview()">Rate</b-button>
+        <b-button class="btn-rate" @click="doReview()">Rate</b-button>
       </b-form-group>
     </b-container>
 
@@ -40,13 +41,16 @@
       <ul class="list-group" v-for="(review, index) in reviews" :key="index">
         <li class="list-group-item">
           <div class="row">
-            <div class="col-xs-2 col-md-1">
-              <img src="http://placehold.it/80" class="img-circle img-responsive" alt />
+            <div class="col">
+              <img :src="review.image" class="img-circle img-responsive" alt />
             </div>
             <div class="col-xs-10 col-md-11">
               <div class="review-text">{{review.texto}}</div>
-              <div class="review-rate">Rate: {{review.rate}}</div>
               <div class="review-user">By: {{review.nameUser}}</div>
+              <div class="review-rate">
+                <span>{{review.rate}}</span>
+                <i class="fa fa-star"></i>
+              </div>
             </div>
           </div>
         </li>
@@ -59,7 +63,6 @@
 <script>
 import NavBar from "../components/NavBar.vue";
 import { mapGetters } from "vuex";
-// import { mapState } from "vuex";
 import Footer from "../components/Footer.vue";
 
 export default {
@@ -84,6 +87,7 @@ export default {
       reviews_data: {
         idUser: "",
         name: "",
+        image: "",
         idLocation: "",
         texto: "",
         rate: ""
@@ -107,7 +111,8 @@ export default {
     // Object to receive all the user info
     this.userInfo = {
       name: "",
-      idUsers: ""
+      idUsers: "",
+      image: ""
     };
     // Get all information that the fake Token (comparing with the data in the store) can give from the logged user
     // in this case, we get the name so we can use it in the review
@@ -115,7 +120,8 @@ export default {
       if (this.userLog.email == this.users[i].email) {
         this.userInfo = {
           name: this.users[i].name,
-          idUser: this.users[i].id
+          idUser: this.users[i].id,
+          image: this.users[i].image
         };
       }
     }
@@ -131,6 +137,7 @@ export default {
     async doReview() {
       this.reviews_data.idUser = this.userInfo;
       this.reviews_data.name = this.userInfo.name;
+      this.reviews_data.image = this.userInfo.image;
       this.reviews_data.idLocation = this.currentLocation.id;
       this.reviews_data.texto = this.data.texto;
       this.reviews_data.rate = this.data.rate;
@@ -148,7 +155,6 @@ export default {
       this.spot_visited.name = this.userInfo.name;
       this.spot_visited.idLocation = this.currentLocation.id;
       this.spot_visited.nameLocation = this.currentLocation.name;
-      // console.log("I'VE BEEN HERE: " + JSON.stringify(this.spot_visited));
 
       this.$store
         .dispatch("setLocationVisitors", this.spot_visited)
@@ -198,40 +204,27 @@ export default {
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: -1;
+  z-index: 3;
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.12) 40%,
     rgba(27, 32, 48, 1) 100%
   );
 }
-.header:before {
-  content: "";
-  width: 100%;
-  height: 200%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* background: #1b2030
-    url(https://ncultura.pt/wp-content/uploads/2016/01/lello1.jpg) 50% 0
-    no-repeat; */
-  background-size: 100%;
-  background-attachment: fixed;
-  animation: grow 360s linear 10ms infinite;
-  transition: all 0.4s ease-in-out;
-  z-index: -2;
-}
+
 .header h1 {
   color: #eee;
   font-size: 50px;
   font-weight: bold;
+  z-index: 4;
 }
 
 .info {
   width: 100%;
   padding: 15% 10% 0 10%;
   text-align: center;
-  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  z-index: 4;
 }
 .author {
   display: inline-block;
@@ -265,7 +258,60 @@ export default {
 .list-group-item {
   border: 1px solid #eee;
   border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin-top: 15px;
-  width: 100%;
+  width: 75%;
+  height: 100px;
+}
+
+.review-text {
+  font-size: 16px;
+}
+
+.review-user {
+  font-size: 14px;
+  margin-top: 10px;
+  color: rgb(36, 101, 161);
+}
+
+.review-rate {
+  font-size: 14px;
+  margin-top: 10px;
+  float: right;
+}
+
+.img-circle {
+  position: relative;
+  align-content: center;
+  background: rgba(0, 0, 0, 0.048);
+  width: 120px;
+  height: 50px;
+}
+
+#textarea {
+  width: 75%;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.form-group-rate {
+  margin-top: 20px;
+  width: 50%;
+}
+
+.btn-rate {
+  position: relative;
+  margin-right: 300px;
+}
+
+.fa-star {
+  color: rgb(206, 173, 27);
+}
+
+.website {
+  border: none;
+  border-bottom: 3px solid rgb(102, 173, 255);
 }
 </style>

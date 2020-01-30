@@ -2,7 +2,7 @@
   <div class="locations">
     <NavBar></NavBar>
     <b-container>
-      <h1 class="page-title">Spots of Interest</h1>
+      <h1 class="page-title">SPOTS OF INTEREST</h1>
       <b-row align-v="center">
         <b-card
           v-for="(spot, index) in spots"
@@ -25,7 +25,7 @@
 
 <script>
 import NavBar from "../components/NavBar.vue";
-import Footer from "../components/Footer.vue"
+import Footer from "../components/Footer.vue";
 import { mapState } from "vuex";
 // import { mapActions } from "vuex";
 

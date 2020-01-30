@@ -59,7 +59,6 @@ export default {
     };
   },
   methods: {
-
     register: function() {
       let user = {
         name: this.name,

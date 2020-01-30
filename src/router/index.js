@@ -8,6 +8,7 @@ import Locations from "../views/Locations.vue";
 import LocationInfo from "../views/LocationInfo.vue"
 import AdminPage from "../views/AdminPage.vue"
 import ItinerariePage from "../views/Itineraries.vue"
+import ItinerariesInfo from "../views/ItinerariesInfo.vue"
 
 Vue.use(VueRouter);
 
@@ -47,10 +48,15 @@ const routes = [{
     component: AdminPage
   },
   {
-    path:"/itineraries",
+    path: "/itineraries",
     name: "itineraries",
     component: ItinerariePage
-  }
+  },
+  {
+    path: "/itinerariesInfo",
+    name: "itinerariesInfo",
+    component: ItinerariesInfo
+  },
 ];
 
 // router.beforeEach((to, from, next) => {
