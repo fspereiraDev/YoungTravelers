@@ -112,7 +112,7 @@ export default {
 }
 
 .section-title {
-  margin-top: 45rem;
+  margin-top: 25rem;
   text-align: center;
 }
 </style>

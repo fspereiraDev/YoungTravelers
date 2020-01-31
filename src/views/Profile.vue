@@ -6,7 +6,7 @@
         <div class="row">
           <img
             class="user-image"
-            src="../assets/13260158_1117762158265646_6591456049993627245_n.jpg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTpH7jSXXbe5rbih-yECBjQhEMkM-n5ux3xKc1UhWKeakqj2kTE"
           />
 
           <b-tabs content-class="mt-4 " justified>
@@ -45,7 +45,7 @@
                 </div>
               </div>
             </b-tab>
-            <b-tab title="Prefered Spots" class="prefered-spots-tab" >
+            <!-- <b-tab title="Prefered Spots" class="prefered-spots-tab" >
               <div class="row">
                 <div class="col col-cards">
                   <b-card
@@ -79,7 +79,7 @@
                   </b-card>
                 </div>
               </div>
-            </b-tab>
+            </b-tab> -->
             <b-tab class="map-tab" title="Map">
               
              <google-map/>
@@ -184,8 +184,8 @@ export default {
   height: 20rem;
   margin-left: 5rem;
   margin-top: 4rem;
-
   border-radius: 10%;
+  box-shadow: 5px 5px 8px 5px #88888854;
 }
 
 .user-info {
