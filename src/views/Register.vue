@@ -1,41 +1,56 @@
 <template>
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
+  <div class="container-fluid">
+    <div class="form fadeInDown" id="formContent">
       <!-- Icon -->
       <div class="fadeIn first">
-        <img src="../assets/logo.png" id="icon" alt="User Icon" width="100px" height="200px" />
+        <img src="../assets/logotipo.png" id="icon" alt="User Icon" width="100px" height="200px" />
       </div>
 
       <!-- Register Form -->
 
       <form @submit.prevent="register">
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Name</label>
-            <input type="text" class="form-control" v-model="formInput.name" placeholder="Full Name" />
+          <div class="form-group col-md-12">
+            <!-- <label>Name</label> -->
+            <input
+              type="text"
+              class="form-control"
+              v-model="formInput.name"
+              placeholder="Name and Surname"
+            />
           </div>
 
           <div class="form-group col-md-6">
-            <label for="inputPassword4">Email</label>
+            <!-- <label for>Email</label> -->
             <input type="email" class="form-control" v-model="formInput.email" placeholder="Email" />
           </div>
-          <div class="form-group com-md-6">
-            <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" v-model="formInput.password" />
+          <div class="form-group col-md-6">
+            <!-- <label for>Password</label> -->
+            <input
+              type="password"
+              class="form-control"
+              v-model="formInput.password"
+              placeholder="Password"
+            />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputCity">Country</label>
-            <input type="text" class="form-control" v-model="formInput.country" />
+            <!-- <label for="inputCity">Country</label> -->
+            <input
+              type="text"
+              class="form-control"
+              v-model="formInput.country"
+              placeholder="Country"
+            />
           </div>
           <div class="form-group col-md-6">
-            <label for="inputCity">Course</label>
-            <input type="text" class="form-control" v-model="formInput.course" />
+            <!-- <label for="inputCity">Course</label> -->
+            <input type="text" class="form-control" v-model="formInput.course" placeholder="Course" />
           </div>
           <div class="form-group col-md-6">
             <label for="inputState">Erasmus University</label>
-            <select class="form-control" v-model="formInput.erasmus_university">
+            <select class="form-control-select" v-model="formInput.erasmus_university">
               <option selected>Choose...</option>
               <option value="Hochschule Furtwangen University">Hochschule Furtwangen University</option>
               <option value="Karel de Grote University College">Karel de Grote University College</option>
@@ -82,7 +97,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for>University</label>
-            <select class="form-control" v-model="formInput.university">
+            <select class="form-control-select" v-model="formInput.university">
               <option
                 value="Escola Superior de Media Artes e Design"
               >Escola Superior de Media Artes e Design</option>
@@ -144,9 +159,9 @@ export default {
         )
         .catch(err => console.log(err));
     },
-      getLastId() {
+    getLastId() {
       return this.series.length ? this.series[this.series.length - 1].id : 0;
-    },
+    }
   }
 };
 </script>
@@ -159,27 +174,21 @@ a {
   font-weight: 400;
 }
 
-h2 {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
-  display: inline-block;
-  margin: 40px 8px 10px 8px;
-  color: #cccccc;
+label {
+  color: white;
 }
-
 /* STRUCTURE */
-
-.wrapper {
+.container-fluid {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
   width: 100%;
-  min-height: 100%;
-  padding-top: 70px;
-  padding-bottom: 50px;
+  height: 80rem;
+  background-image: url("../assets/backg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100%;
 }
 
 #formContent {
@@ -187,38 +196,26 @@ h2 {
   border-radius: 10px 10px 10px 10px;
   background: rgb(126, 126, 126, 0.2);
   padding: 30px;
-  width: 90%;
-  max-width: 450px;
+  width: 600px;
+  /* max-width: 450px; */
   position: relative;
-  padding: 0px;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.1);
   text-align: center;
-  height: 57.7rem;
+  margin-top: 5rem;
 }
 
 #formFooter {
-  background-color: rgb(126, 126, 126, 0.3);
-  border-top: 1px solid #dce8f1;
+  background-color: rgb(126, 126, 126, 0.2) !important;
+  /* border-top: 1px solid #f3f3f3; */
+  border: none;
   padding: 25px;
   text-align: center;
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
 }
 
-/* TABS */
-
-h2.inactive {
-  color: #cccccc;
-}
-
-h2.active {
-  color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
-}
-
 /* FORM TYPOGRAPHY*/
-
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
@@ -262,7 +259,7 @@ input[type="reset"]:active {
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-  background-color: #f1efef;
+  background-color: #e2e2e2;
   border: none;
   color: #0d0d0d;
   padding: 15px 32px;
@@ -271,8 +268,29 @@ input[type="email"] {
   display: inline-block;
   font-size: 16px;
   margin: 5px;
-  width: 70%;
-  border: 1px solid #f6f6f6;
+  width: 100%;
+  /* border: 1px solid #f6f6f6; */
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.form-control-select {
+  background-color: #e2e2e2;
+  border: none;
+  color: #0d0d0d;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 100%;
+  /* border: 1px solid #f6f6f6; */
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -288,115 +306,9 @@ input[type="password"]:focus {
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type="text"]:placeholder {
+input[type="text"]:placeholder,
+input[type="email"]:placeholder {
   color: #cccccc;
-}
-
-/* ANIMATIONS */
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.fadeIn {
-  opacity: 0;
-  -webkit-animation: fadeIn ease-in 1;
-  -moz-animation: fadeIn ease-in 1;
-  animation: fadeIn ease-in 1;
-
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  animation-duration: 1s;
-}
-
-.fadeIn.first {
-  -webkit-animation-delay: 0.4s;
-  -moz-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.fadeIn.second {
-  -webkit-animation-delay: 0.6s;
-  -moz-animation-delay: 0.6s;
-  animation-delay: 0.6s;
-}
-
-.fadeIn.third {
-  -webkit-animation-delay: 0.8s;
-  -moz-animation-delay: 0.8s;
-  animation-delay: 0.8s;
-}
-
-.fadeIn.fourth {
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  animation-delay: 1s;
 }
 
 .underlineHover:after {
@@ -418,13 +330,7 @@ input[type="text"]:placeholder {
   width: 100%;
 }
 
-/* OTHERS */
-
-*:focus {
-  outline: none;
-}
-
 #icon {
-  width: 60%;
+  width: 50%;
 }
 </style>

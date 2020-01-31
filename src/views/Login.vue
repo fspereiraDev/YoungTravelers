@@ -3,7 +3,7 @@
     <div class="form fadeInDown" id="formContent">
       <!-- Icon -->
       <div class="icon">
-        <img src="../assets/logo.png" id="icon" alt="User Icon" width="100px" height="200px" />
+        <img src="../assets/logotipo.png" id="icon" alt="User Icon" width="100px" height="200px" />
       </div>
 
       <!-- Login Form -->
@@ -83,24 +83,21 @@ export default {
               icon: "success",
               timer: 1000
             });
-           
 
             for (let j = 0; j < this.users.length; j++) {
-
-                if (email == this.users[i].email && this.users[i].user_type == 2 ) {
-                  
-                  this.$router.push("/");
-                }
-                if (email == this.users[i].email && this.users[i].user_type == 1 ) {
-                  
-                  this.$router.push("/adminpage");
-                }
-                
+              if (
+                email == this.users[i].email &&
+                this.users[i].user_type == 2
+              ) {
+                this.$router.push("/");
+              }
+              if (
+                email == this.users[i].email &&
+                this.users[i].user_type == 1
+              ) {
+                this.$router.push("/adminpage");
+              }
             }
-            
-                
-            
-            
           } else {
             await this.$swal({
               title: "ERROR",

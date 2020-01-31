@@ -46,7 +46,7 @@ export default new Vuex.Store({
         email: "rokas@gmail.com",
         password: "rokas123",
         password2: "rokas123",
-        tags: ["Desporto", "Literatura", "Música"],
+        tags: ["Sports", "Literature", "Music", "Nature"],
         user_type: 2
       }
     ],
@@ -60,7 +60,7 @@ export default new Vuex.Store({
         description: "A Livraria Lello é uma porta viva de acesso à história: pela preservação do edifício, pela manutenção da sua função original como livraria, pelo papel de embaixadora da cultura e pela dinâmica cultural que continua a imprimir na cidade.",
         rating: "",
         website: "https://www.livrarialello.pt/pt-pt/",
-        tag: "Literatura"
+        tag: "Literature"
       },
       {
         id: 2,
@@ -72,7 +72,7 @@ export default new Vuex.Store({
         description: "O Estádio do Dragão é um estádio de futebol, localizado na freguesia de Campanhã, cidade do Porto, atualmente propriedade do FC Porto, sendo neste recinto que a equipa de futebol joga as suas partidas em casa.",
         rating: "",
         website: "https://www.fcporto.pt/pt/clube/estadio-do-dragao",
-        tag: "Desporto"
+        tag: "Sports"
       },
       {
         id: 3,
@@ -84,20 +84,20 @@ export default new Vuex.Store({
         description: "O Coliseu do Porto é uma sala de espectáculos localizada na cidade do Porto, em Portugal. O edifício foi classificado como Monumento de Interesse Público pela Portaria n.º 637/2012, de 2 de novembro de 2012, publicada em Diário da República.",
         rating: "",
         website: "https://www.coliseu.pt/",
-        tag: "Música"
+        tag: "Music"
       },
       {
-        id: 3,
-        image: "https://www.medis.pt/media/1998/coliseu-porto-agora-e-coliseu-porto-ageas.jpg?anchor=center&mode=crop&width=1440&height=895&rnd=131719894510000000",
-        name: "Coliseu Porto Ageas",
+        id: 4,
+        image: "https://www.cp.pt/StaticFiles/Passageiros/4_vantagens/vantagens/cultura/serralves-g.jpg",
+        name: "Serralves",
         lat: "41.146992",
         long: "-8.6076057",
-        address: "R. de Passos Manuel 137, 4000-385 Porto",
+        address: "R. Dom João de Castro 210, 4150-417 Porto",
         description: "O Coliseu do Porto é uma sala de espectáculos localizada na cidade do Porto, em Portugal. O edifício foi classificado como Monumento de Interesse Público pela Portaria n.º 637/2012, de 2 de novembro de 2012, publicada em Diário da República.",
         rating: "",
-        website: "https://www.coliseu.pt/",
-        tag: "Música"
-      }
+        website: "https://www.serralves.pt/pt/",
+        tag: "Nature"
+      },
     ],
     currentLocation: {},
     reviews: [{

@@ -11,7 +11,7 @@
       <section class="content">
         <p>{{currentLocation.description}}</p>
         <p align="center">
-          <a class="website" target="currentLocation.website">Visit Website</a>
+          <a class="website">Visit Website</a>
         </p>
         <b-button variant="info" @click="beenThere()">Been there</b-button>
       </section>
