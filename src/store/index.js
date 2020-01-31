@@ -57,7 +57,7 @@ export default new Vuex.Store({
         lat: "41.1469055",
         long: "-8.6169633",
         address: "R. das Carmelitas 144, 4050-161 Porto",
-        description: "A Livraria Lello é uma porta viva de acesso à história: pela preservação do edifício, pela manutenção da sua função original como livraria, pelo papel de embaixadora da cultura e pela dinâmica cultural que continua a imprimir na cidade.",
+        description: "Livraria Lello is a living gateway to history: for the preservation of the building, for the maintenance of its original function as a bookstore, for the role of ambassador of culture and for the cultural dynamics that continues to print in the city.",
         rating: "",
         website: "https://www.livrarialello.pt/pt-pt/",
         tag: "Literature"
@@ -69,7 +69,7 @@ export default new Vuex.Store({
         lat: "",
         long: "",
         address: "Via Futebol Clube do Porto, 4350-415 Porto",
-        description: "O Estádio do Dragão é um estádio de futebol, localizado na freguesia de Campanhã, cidade do Porto, atualmente propriedade do FC Porto, sendo neste recinto que a equipa de futebol joga as suas partidas em casa.",
+        description: "Estádio do Dragão is a football stadium, located in the parish of Campanhã, city of Porto, currently owned by FC Porto, where the football team plays its matches at home.",
         rating: "",
         website: "https://www.fcporto.pt/pt/clube/estadio-do-dragao",
         tag: "Sports"
@@ -81,7 +81,7 @@ export default new Vuex.Store({
         lat: "41.146992",
         long: "-8.6076057",
         address: "R. de Passos Manuel 137, 4000-385 Porto",
-        description: "O Coliseu do Porto é uma sala de espectáculos localizada na cidade do Porto, em Portugal. O edifício foi classificado como Monumento de Interesse Público pela Portaria n.º 637/2012, de 2 de novembro de 2012, publicada em Diário da República.",
+        description: "Coliseu do Porto is a concert hall located in the city of Porto, in Portugal. The building was classified as a Monument of Public Interest by Ordinance No. 637/2012, of November 2, 2012, published in Diário da República.",
         rating: "",
         website: "https://www.coliseu.pt/",
         tag: "Music"
@@ -93,7 +93,7 @@ export default new Vuex.Store({
         lat: "41.146992",
         long: "-8.6076057",
         address: "R. Dom João de Castro 210, 4150-417 Porto",
-        description: "O Coliseu do Porto é uma sala de espectáculos localizada na cidade do Porto, em Portugal. O edifício foi classificado como Monumento de Interesse Público pela Portaria n.º 637/2012, de 2 de novembro de 2012, publicada em Diário da República.",
+        description: "The Serralves Foundation is located in the Serralves Park in the city of Porto, in Portugal, where the Serralves House and the Serralves Contemporary Art Museum are located.",
         rating: "",
         website: "https://www.serralves.pt/pt/",
         tag: "Nature"
