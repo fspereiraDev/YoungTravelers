@@ -145,6 +145,7 @@ export default new Vuex.Store({
         city: "Porto",
         address: "Via Futebol Clube do Porto, 4350-415 Porto",
 <<<<<<< HEAD
+<<<<<<< HEAD
         image: "",
         rating: 0,
         lat: 41.16177,
@@ -183,6 +184,8 @@ export default new Vuex.Store({
       image: "https://i.pinimg.com/originals/02/fe/cb/02fecb6d98822d12103b4bfa9fcf56aa.jpg",
       locations: [{
 =======
+=======
+>>>>>>> c886848dc182476de601ef7f898b10d46f6c6a5b
         description: "Estádio do Dragão is a football stadium, located in the parish of Campanhã, city of Porto, currently owned by FC Porto, where the football team plays its matches at home.",
         rating: "",
         website: "https://www.fcporto.pt/pt/clube/estadio-do-dragao",
