@@ -4,7 +4,7 @@
       <h1 class="title">Young Travelers</h1>
       <hr class="separation" />
       <i class="fa fa-user-circle fa-3x"></i>
-      <p class="user-logged">John Doe</p>
+      <p class="user-logged">Admin</p>
       <hr class="separation2" />
       <button class="user-list" @click="showUsers()">
         <i class="fa fa-address-book fa-2x"></i>
@@ -18,7 +18,13 @@
         <i class="fa fa-comments fa-2x" @click="showReviews()"></i>
         <p class="locations-placeholder">Reviews</p>
       </button>
+      <button class="user-logout">
+        <i class="fa fa-sign-out fa-2x" @click="logout"></i>
+        <p class="locations-placeholder">Sign Out</p>
+      </button>
     </div>
+     <!-- <Modal></Modal>
+    <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Open Modal</b-button> -->
     <div class="container" v-if="clickUsers == true">
       <table class="table user-table table-striped">
         <thead class>
@@ -33,7 +39,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(user, index ) in users " :key="index">
+          <tr v-for="(user,index) in users" :key="index">
             <td>{{user.id}}</td>
             <td>{{user.name}}</td>
             <td>{{user.country}}</td>
@@ -48,9 +54,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="container" v-if="clickUsers == true">
-    
     </div>
     <div class="container" v-if="clickLocations == true">
       <table class="table user-table table-striped">
@@ -71,13 +74,14 @@
             <td>{{location.rating}}</td>
             <td>{{location.tag}}</td>
             <td>
-              <button class="btn btn-danger btn-sm" @click="remove(location.id)">
+              <button class="btn btn-danger btn-sm" @click="removeLocation(location.id)">
                 <i class="fa fa-trash fa-2x"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
+  
     </div>
     <div class="container" v-if="clickReviews == true">
       <table class="table user-table table-striped">
@@ -96,7 +100,7 @@
             <td>{{review.texto}}</td>
             <td>{{review.rate}}</td>
             <td>
-              <button class="btn btn-danger btn-sm" @click="remove(review.id)">
+              <button class="btn btn-danger btn-sm" @click="removeReview(review.id)">
                 <i class="fa fa-trash fa-2x"></i>
               </button>
             </td>
@@ -104,21 +108,35 @@
         </tbody>
       </table>
     </div>
+
   </div>
 </template>
 
 <script>
+// import { mapState } from 'vuex';
+// import Modal from "../components/Modal.vue";
 export default {
   name: "AdminPage",
+  components: {
+    // Modal
+  },
 
   data() {
     return {
       clickUsers: false,
       clickLocations: false,
       clickReviews: false,
-      users: [],
+      inputName: "",
+      users: {},
       locations: [],
-      reviews: []
+      reviews: [],
+      addLocations: {
+        id: this.$store.getters.getLastId,
+        name: "",
+        address: "",
+        rating: "",
+        tag: ""
+      }
     };
   },
   created() {
@@ -145,7 +163,47 @@ export default {
       this.clickReviews = true;
     },
     remove(id) {
-      this.$store.dispatch("remove", id);
+      this.$store.dispatch("removeUser", id);
+    },
+
+    removeLocation(id) {
+      this.$store.dispatch("removeLocation", id);
+    },
+
+    removeReview(id) {
+      this.$store.dispatch("removeReview", id);
+    },
+    logout: function() {
+      this.$store.dispatch("logout").then(() => {
+        // this.$store.dispatch(""); !!! passar informação para o prepare local !!!!
+        this.$swal({
+          title: "Goodbye",
+          text: "Loggin Out",
+          icon: "success",
+          timer: 1000
+        });
+        this.$router.push("/login").catch(err => {
+          err;
+        });
+      });
+    },
+
+    registerLocation() {
+      this.$store.dispatch("addLocation", {
+        name: this.addLocations.name,
+        address: this.addLocations.address,
+        rating: this.addLocations.rating,
+        tag: this.addLocations.tag
+      });
+    }
+  },
+
+  computed: {
+    filteredUsers() {
+      let users = this.users.filter(user => {
+        return user.name.match(this.inputName);
+      });
+      return users;
     }
   }
 };
@@ -273,6 +331,25 @@ export default {
   margin-top: 5rem;
   height: 60rem;
 }
+.user-logout {
+  background-color: black;
+  font-size: 1.8rem;
+  margin-left: 1.2rem;
+  margin-top: 2rem;
+  border: none;
+  width: 20rem;
+  border-radius: 12px;
+}
+.user-logout:hover {
+  background-color: rgb(39, 131, 235);
+  transition-duration: 0.4s;
+}
+
+.fa-sign-out {
+  margin-top: 0.5rem;
+  margin-left: -12rem;
+}
+
 th {
   font-size: 2rem;
   font-weight: bold;
@@ -281,5 +358,17 @@ th {
 tr {
   text-align: center;
   font-size: 1.5rem;
+}
+
+.modal {
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border-radius: 50px;
 }
 </style>

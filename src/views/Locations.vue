@@ -3,6 +3,23 @@
     <NavBar></NavBar>
     <b-container>
       <h1 class="page-title">SPOTS OF INTEREST</h1>
+
+      <div class="input-group input-filter mb-5">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-filter"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          aria-label
+          aria-describedby="inputGroup-sizing-default"
+          placeholder="Filter for the spot you want to find..."
+          v-model="searchInput"
+        />
+      </div>
+
       <b-row align-v="center">
         <b-card
           v-for="(spot, index) in spots"
@@ -37,7 +54,8 @@ export default {
   },
   data() {
     return {
-      spots: {}
+      spots: {},
+      searchInput: ""
     };
   },
   mounted() {
@@ -51,10 +69,22 @@ export default {
       this.$store.dispatch("currentLocation", currentSpot);
     }
   },
-  computed: mapState({
-    getLocations: state => state.locations,
-    getCurrentLocation: state => state.currentLocation
-  })
+  computed: {
+    ...mapState({
+      getLocations: state => state.locations,
+      getCurrentLocation: state => state.currentLocation
+    })
+
+    // filteredLocations() {
+    //   let spots = this.spots.filter(spot => {
+    //     return (
+    //       spot.name.toLowerCase().includes(this.searchInput.toLowerCase()) &&
+    //       spot.name.match(this.searchInput)
+    //     );
+    //   });
+    //   return spots;
+    // }
+  }
 };
 </script>
 
@@ -100,5 +130,21 @@ export default {
 .page-title {
   text-align: center;
   font-size: 50px;
+}
+
+.input-group {
+  margin-top: 10px;
+  margin-left: 20px;
+  height: 35px;
+  width: 1000px;
+}
+
+.form-control {
+  height: 35px;
+  width: 500px;
+}
+
+input[type="text"] {
+  font-size: 14px;
 }
 </style>
