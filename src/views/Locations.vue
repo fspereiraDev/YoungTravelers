@@ -22,7 +22,7 @@
 
       <b-row align-v="center">
         <b-card
-          v-for="(spot, index) in filteredLocations"
+          v-for="(spot, index) in spots"
           :key="index"
           :title="spot.name"
           :img-src="spot.image"
@@ -73,17 +73,17 @@ export default {
     ...mapState({
       getLocations: state => state.locations,
       getCurrentLocation: state => state.currentLocation
-    }),
+    })
 
-    filteredLocations() {
-      let spots = this.spots.filter(spot => {
-        return (
-          spot.name.toLowerCase().includes(this.searchInput.toLowerCase()) &&
-          spot.name.match(this.searchInput)
-        );
-      });
-      return spots;
-    }
+    // filteredLocations() {
+    //   let spots = this.spots.filter(spot => {
+    //     return (
+    //       spot.name.toLowerCase().includes(this.searchInput.toLowerCase()) &&
+    //       spot.name.match(this.searchInput)
+    //     );
+    //   });
+    //   return spots;
+    // }
   }
 };
 </script>
