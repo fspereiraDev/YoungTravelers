@@ -52,7 +52,7 @@ export default {
     // console.log(this.users);
   },
   methods: {
-    async login() {
+   async login() {
       let email = this.loginInput.email;
       let password = this.loginInput.password;
       // console.log("Email: " + email + " & password: " + password);

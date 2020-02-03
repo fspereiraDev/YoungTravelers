@@ -61,6 +61,7 @@ export default {
     console.log(this.itineraries);
   },
   methods: {
+    //Get the current itinerary
     addCurrentItinerary(itinerary) {
       // console.log(itinerary);
       let currentItinerary = itinerary;

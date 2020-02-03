@@ -11,7 +11,6 @@
             <div class="list-desc">
               <h3>{{location.name}}</h3>
               <div>{{location.address}}</div>
-              <!-- <div>Boarding: 5:30 am Destination: Miami, FL</div> -->
               <div class="border"></div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-navbar toggleable="sm" type="dark" variant="dark">
-      <b-navbar-brand to="/"></b-navbar-brand>
+    <b-navbar toggleable="sm" >
+      <b-navbar-brand to="/"><img src="../assets/logotipo.png"></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -13,10 +13,10 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-button to="/login" class="my-4" type="submit">Login</b-button>
+          <b-button to="/login" class="my-4 btn-login" type="submit" v-if="!isLogged()" >Login</b-button>
           <!-- <b-button to="/login" class="my-4" type="submit" @click="logout">Logout</b-button> -->
 
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown class="drop" v-else right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
               <em>
@@ -24,8 +24,8 @@
                 {{userInfo.name}}
               </em>
             </template>
-            <b-dropdown-item to="/profile">Profile</b-dropdown-item>
-            <b-button to="/login" @click="logout">Sign Out</b-button>
+            <b-dropdown-item class="drop-item-1"  to="/profile">Profile</b-dropdown-item>
+            <b-button class="drop-item-2" to="/login" @click="logout">Sign Out</b-button>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -99,10 +99,60 @@ export default {
           err;
         });
       });
+    },
+    isLogged() {
+
+      return this.$store.getters.getIsLoggedIn;
     }
   }
 };
 </script>
 
 <style scoped>
+
+.navbar {
+
+  background-color:transparent;
+}
+
+.nav-link {
+
+  font-size: 18px;
+  padding: 0;
+  margin-left: 25px;
+}
+
+.nav-link:hover{
+
+  border-bottom: 3px solid black;
+  color: #333;
+}
+.navbar-brand>img {
+    display: block;
+    width: 50px;
+}
+
+.btn-login {
+
+  border-radius: 6px;
+  font-size: 15px;
+  width: 75px;
+}
+
+.drop {
+
+  font-size: 15px;
+}
+.drop-item-1 {
+
+  font-size: 15px;
+}
+
+.drop-item-2 {
+
+  font-size: 15px;
+  width: 100px;
+}
+
+
 </style>

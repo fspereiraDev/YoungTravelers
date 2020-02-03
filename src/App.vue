@@ -11,6 +11,8 @@ export default {
     let locations = localStorage.getItem("locations");
     let reviews = localStorage.getItem("reviews");
 
+    //Check if that is any objects in the storage 
+    //if it isn't, createss them and populates them with data from the vuex store
     if (!users) {
       this.$store.dispatch("prepareLocalUsers");
     } else {

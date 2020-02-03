@@ -45,43 +45,8 @@
                 </div>
               </div>
             </b-tab>
-            <!-- <b-tab title="Prefered Spots" class="prefered-spots-tab" >
-              <div class="row">
-                <div class="col col-cards">
-                  <b-card
-                    title="Card Title"
-                    img-src="https://picsum.photos/600/300/?image=25"
-                    img-alt="Image"
-                    img-top
-                    tag="article"
-                    style="max-width: 20rem;"
-                    class="mb-2"
-                  >
-                    <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-                    <b-button href="#" variant="primary">Go somewhere</b-button>
-                  </b-card>
-                </div>
-
-                <div class="col col-cards">
-                  <b-card
-                    title="Card Title"
-                    img-src="https://picsum.photos/600/300/?image=25"
-                    img-alt="Image"
-                    img-top
-                    tag="article"
-                    style="max-width: 20rem;"
-                    class="mb-2"
-                  >
-                    <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-                    <b-button href="#" variant="primary">Go somewhere</b-button>
-                  </b-card>
-                </div>
-              </div>
-            </b-tab> -->
             <b-tab class="map-tab" title="Map">
-              
+          
              <google-map/>
              
             </b-tab>
@@ -140,7 +105,7 @@ export default {
       tags: "",
       is_admin: ""
     };
-
+    // Get all info from every user in the app
     for (let i = 0; i < this.users.length; i++) {
       if (this.userLog.email == this.users[i].email) {
         console.log("MATCHED USER: " + JSON.stringify(this.users[i]));

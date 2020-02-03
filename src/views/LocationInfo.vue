@@ -134,6 +134,8 @@ export default {
     })
   },
   methods: {
+    // Function to store de information about the reviews 
+    // and send it to the store
     async doReview() {
       this.reviews_data.idUser = this.userInfo;
       this.reviews_data.name = this.userInfo.name;
@@ -165,7 +167,8 @@ export default {
           )
         );
     },
-
+    // Function to verify is the user has been in a specific spot
+    // so it can be used to hide the review form (v-if not applied, not working properly)
     hasbeenThere() {
       for (let i = 0; i < this.$store.state.locationVisitors; i++) {
         console.log("FOR CYCLE");
