@@ -2,10 +2,26 @@
   <div class="itineraries">
     <NavBar></NavBar>
     <b-container>
+      <div class="input-group input-filter mb-5">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-filter"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          aria-label
+          aria-describedby="inputGroup-sizing-default"
+          placeholder="Filter for the spot you want to find..."
+          v-model="searchInput"
+        />
+      </div>
+
       <h1 class="page-title">ITENERARIES SUGESTIONS</h1>
       <div
         class="card bg-dark text-white"
-        v-for="(itinerary, index) in itineraries"
+        v-for="(itinerary, index) in filteredItineraries"
         :key="index"
         @click="addCurrentItinerary(itinerary)"
       >
@@ -52,10 +68,24 @@ export default {
       this.$router.push("/itinerariesInfo");
     }
   },
-  computed: mapState({
-    getItineraries: state => state.itineraries,
-    getCurrentLocation: state => state.currentLocation
-  })
+  computed: {
+    ...mapState({
+      getItineraries: state => state.itineraries,
+      getCurrentLocation: state => state.currentLocation
+    }),
+
+    filteredItineraries() {
+      let itineraries = this.$store.state.itineraries.filter(itinerary => {
+        return (
+          itinerary.name
+            .toLowerCase()
+            .includes(this.searchInput.toLowerCase()) &&
+          itinerary.title.match(this.searchInput)
+        );
+      });
+      return itineraries;
+    }
+  }
 };
 </script>
 
@@ -93,5 +123,21 @@ export default {
   margin-top: 30px;
   font-size: 30px;
   font-weight: bold;
+}
+
+.input-group {
+  margin-top: 10px;
+  margin-left: 20px;
+  height: 35px;
+  width: 1000px;
+}
+
+.form-control {
+  height: 35px;
+  width: 500px;
+}
+
+input[type="text"] {
+  font-size: 14px;
 }
 </style>
