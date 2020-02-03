@@ -21,7 +21,7 @@
       <h1 class="page-title">ITENERARIES SUGESTIONS</h1>
       <div
         class="card bg-dark text-white"
-        v-for="(itinerary, index) in filteredItineraries"
+        v-for="(itinerary, index) in itineraries"
         :key="index"
         @click="addCurrentItinerary(itinerary)"
       >
@@ -75,6 +75,7 @@ export default {
       getCurrentLocation: state => state.currentLocation
     }),
 
+    // Filter Itineraries - not applied in the v-for cycle, error occured
     filteredItineraries() {
       let itineraries = this.$store.state.itineraries.filter(itinerary => {
         return (
